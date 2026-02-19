@@ -9,5 +9,9 @@ router.use("/register", AuthController.createUser);
 
 
 
+router.use("/login", AuthController.loginUser);
+
+
+
 
 export const AuthRoutes = router;
