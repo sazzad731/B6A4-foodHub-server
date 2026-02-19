@@ -4,6 +4,11 @@ import { AuthService } from "./auth.service";
 
 const createUser = async (req: Request, res: Response) => {
     try {
+        if (req.body.role === "ADMIN") {
+            throw new Error(
+              "Registration failed. You have no permission to use admin role",
+            );
+        }
         const result = await AuthService.createUser(req.body)
         sendResponse(res, {
           statusCode: 201,
@@ -11,11 +16,12 @@ const createUser = async (req: Request, res: Response) => {
           message: "User created successfully",
           data: result,
         });
-    } catch (error) {
+    } catch (error: any) {
         sendResponse(res, {
             statusCode: 500,
             success: false,
-            message: "User creation failed"
+            message: "User creation failed",
+            data: error.message
         })
     }
 }
