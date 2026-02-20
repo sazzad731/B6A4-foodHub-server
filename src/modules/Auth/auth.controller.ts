@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { AuthService } from "./auth.service";
+import { JwtPayload } from "jsonwebtoken";
 
 const createUser = async (req: Request, res: Response) => {
   try {
@@ -34,13 +35,11 @@ const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
       const result = await AuthService.loginUser(email, password);
       
-
       res.cookie("token", result.token, {
           secure: false,
           httpOnly: true,
           sameSite: "strict"
       })
-
 
     sendResponse(res, {
       statusCode: 200,
@@ -58,7 +57,34 @@ const loginUser = async (req: Request, res: Response) => {
   }
 };
 
+
+
+
+const getCurrentUser = async (req: Request, res: Response) => {
+  try {
+    const email = req.user?.email;
+    const result = await AuthService.getCurrentUser(email as string)
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Data retrieved success",
+      data: result,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 404,
+      success: false,
+      message: "Data retrieve failed",
+      data: error.message,
+    });
+  }
+}
+
+
+
+
 export const AuthController = {
   createUser,
   loginUser,
+  getCurrentUser,
 };

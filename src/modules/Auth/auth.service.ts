@@ -50,7 +50,32 @@ const loginUser = async (email: string, password: string) => {
 
 
 
+
+
+const getCurrentUser = async (email: string) => {
+    const result = await prisma.user.findUniqueOrThrow({
+        where: {
+            email
+        },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            status: true,
+            createdAt: true,
+            updatedAt: true,
+        }
+    });
+    return result;
+};
+
+
+
+
+
 export const AuthService = {
   createUser,
   loginUser,
+  getCurrentUser,
 };

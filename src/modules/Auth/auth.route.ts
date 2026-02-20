@@ -1,15 +1,21 @@
 import express from 'express';
 import { AuthController } from './auth.controller';
+import auth, { UserRole } from '../../middlewares/auth';
 
 const router = express.Router();
 
 
 
-router.use("/register", AuthController.createUser);
+router.post("/register", AuthController.createUser);
 
 
 
-router.use("/login", AuthController.loginUser);
+router.post("/login", AuthController.loginUser);
+
+
+
+
+router.get("/me", auth(UserRole.ADMIN, UserRole.CUSTOMER, UserRole.PROVIDER), AuthController.getCurrentUser)
 
 
 
