@@ -1,7 +1,7 @@
 import cookieParser from "cookie-parser"
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import { AuthRoutes } from './modules/Auth/auth.route';
+import router from "./routes";
 
 const app: Application = express();
 
@@ -11,7 +11,8 @@ app.use(cors());
 app.use(cookieParser())
 
 // application routes
-app.use('/api/auth', AuthRoutes);
+app.use("/api", router)
+
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from FoodHub');
