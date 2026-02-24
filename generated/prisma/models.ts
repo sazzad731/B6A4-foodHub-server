@@ -8,5 +8,10 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Meals'
+export type * from './models/MealsCategories'
+export type * from './models/Orders'
+export type * from './models/ProviderProfile'
+export type * from './models/Reviews'
 export type * from './models/User'
 export type * from './commonInputTypes'

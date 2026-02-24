@@ -51,6 +51,11 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Meals: 'Meals',
+  MealsCategories: 'MealsCategories',
+  Orders: 'Orders',
+  ProviderProfile: 'ProviderProfile',
+  Reviews: 'Reviews',
   User: 'User'
 } as const
 
@@ -68,6 +73,74 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const MealsScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  categoryId: 'categoryId',
+  description: 'description',
+  price: 'price',
+  image: 'image',
+  isAvailable: 'isAvailable',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MealsScalarFieldEnum = (typeof MealsScalarFieldEnum)[keyof typeof MealsScalarFieldEnum]
+
+
+export const MealsCategoriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MealsCategoriesScalarFieldEnum = (typeof MealsCategoriesScalarFieldEnum)[keyof typeof MealsCategoriesScalarFieldEnum]
+
+
+export const OrdersScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  mealId: 'mealId',
+  quantity: 'quantity',
+  totalPrice: 'totalPrice',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+
+
+export const ProviderProfileScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  businessName: 'businessName',
+  description: 'description',
+  address: 'address',
+  contactNumber: 'contactNumber',
+  rating: 'rating',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProviderProfileScalarFieldEnum = (typeof ProviderProfileScalarFieldEnum)[keyof typeof ProviderProfileScalarFieldEnum]
+
+
+export const ReviewsScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  mealId: 'mealId',
+  rating: 'rating',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewsScalarFieldEnum = (typeof ReviewsScalarFieldEnum)[keyof typeof ReviewsScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -98,4 +171,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
