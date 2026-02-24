@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { AuthService } from "./auth.service";
 import { JwtPayload } from "jsonwebtoken";
 
-const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.body.role === "ADMIN") {
       throw new Error(
@@ -18,28 +18,24 @@ const createUser = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    sendResponse(res, {
-      statusCode: 500,
-      success: false,
-      message: "User creation failed",
-      data: error.message,
-    });
+    next(error)
   }
 };
 
 
 
 
-const loginUser = async (req: Request, res: Response) => {
+const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, password } = req.body;
-      const result = await AuthService.loginUser(email, password);
-      
-      res.cookie("token", result.token, {
-          secure: false,
-          httpOnly: true,
-          sameSite: "strict"
-      })
+    
+    const result = await AuthService.loginUser(email, password);
+
+    res.cookie("token", result.token, {
+      secure: false,
+      httpOnly: true,
+      sameSite: "strict",
+    });
 
     sendResponse(res, {
       statusCode: 200,
@@ -48,19 +44,14 @@ const loginUser = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    sendResponse(res, {
-      statusCode: 404,
-      success: false,
-      message: "Login failed",
-      data: error.message,
-    });
+    next(error);
   }
 };
 
 
 
 
-const getCurrentUser = async (req: Request, res: Response) => {
+const getCurrentUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const email = req.user?.email;
     const result = await AuthService.getCurrentUser(email as string)
@@ -71,12 +62,7 @@ const getCurrentUser = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    sendResponse(res, {
-      statusCode: 404,
-      success: false,
-      message: "Data retrieve failed",
-      data: error.message,
-    });
+    next(error)
   }
 }
 
