@@ -6,6 +6,24 @@ const getAllProviders = async () => {
 }
 
 
-export const providerService = {
-  getAllProviders
+
+
+const getProviderById = async (providerId: string) => {
+  const result = await prisma.providerProfile.findUniqueOrThrow({
+    where: {
+      id: providerId
+    }
+  })
+
+  return result
 }
+
+
+
+
+
+
+export const providerService = {
+  getAllProviders,
+  getProviderById
+};
