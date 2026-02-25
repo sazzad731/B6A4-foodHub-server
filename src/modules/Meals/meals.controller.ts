@@ -36,7 +36,27 @@ const getMealDetail = async (req: Request, res: Response, next: NextFunction) =>
 
 
 
+
+const addMealToMenu = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await mealsService.addMealToMenu(req.body);
+    sendResponse(res, {
+      statusCode: 201,
+      success: true,
+      message: "Meal added successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
 export const mealsController = {
   getAllMeals,
   getMealDetail,
+  addMealToMenu,
 };

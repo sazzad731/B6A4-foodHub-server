@@ -19,7 +19,18 @@ const getMealDetail = async (mealId: string) => {
 
 
 
+const addMealToMenu = async (payload: any) => {
+  const result = await prisma.meals.create({
+    data: payload
+  })
+
+  return result
+}
+
+
+
 export const mealsService = {
   getAllMeals,
   getMealDetail,
+  addMealToMenu,
 };
