@@ -21,7 +21,21 @@ const getUserOrder = async (userId: string) => {
 
 
 
+const getOrderDetails = async (orderId: string, userId: string) => {
+  const result = await prisma.orders.findUniqueOrThrow({
+    where: {
+      id: orderId,
+      customerId: userId
+    }
+  })
+  return result;
+}
+
+
+
+
 export const orderService = {
   createOrder,
   getUserOrder,
+  getOrderDetails,
 };

@@ -36,8 +36,32 @@ const getUserOrder = async (req: Request, res: Response, next: NextFunction) => 
 
 
 
+const getOrderDetails = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user?.id;
+    const result = await orderService.getOrderDetails(id as string, userId as string);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Order retrieved successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
 
 export const orderController = {
   createOrder,
   getUserOrder,
+  getOrderDetails,
 };
