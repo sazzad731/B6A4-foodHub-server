@@ -8,4 +8,7 @@ const router = Router();
 router.get("/", mealsController.getAllMeals)
 
 
+router.get("/:id", mealsController.getMealDetail)
+
+
 export const mealsRoute = router

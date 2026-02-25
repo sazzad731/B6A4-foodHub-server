@@ -19,6 +19,24 @@ const getAllMeals = async(req: Request, res: Response, next: NextFunction) => {
 
 
 
+const getMealDetail = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const {id} = req.params
+    const result = await mealsService.getMealDetail(id as string);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Data retrieved successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
 export const mealsController = {
-  getAllMeals
-}
+  getAllMeals,
+  getMealDetail,
+};

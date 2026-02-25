@@ -7,6 +7,19 @@ const getAllMeals = async()=> {
 
 
 
-export const mealsService = {
-  getAllMeals
+const getMealDetail = async (mealId: string) => {
+  const result = await prisma.meals.findUniqueOrThrow({
+    where: {
+      id: mealId
+    }
+  })
+
+  return result
 }
+
+
+
+export const mealsService = {
+  getAllMeals,
+  getMealDetail,
+};
