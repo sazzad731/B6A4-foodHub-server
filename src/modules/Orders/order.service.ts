@@ -9,10 +9,19 @@ const createOrder = async (payload: any) => {
 
 
 
+const getUserOrder = async (userId: string) => {
+  const result = await prisma.orders.findMany({
+    where: {
+      customerId: userId
+    },
+  });
 
+  return result
+}
 
 
 
 export const orderService = {
-  createOrder
-}
+  createOrder,
+  getUserOrder,
+};
