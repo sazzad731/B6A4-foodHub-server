@@ -31,6 +31,8 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
       message = "Authentication failed against database server at {database_host}, the provided database credentials for {database_user} are not valid. Please make sure to provide valid database credentials for the database server at {database_host}."
     }
   } else {
+    statusCode = 400
+    message = "Bad request"
     errorDetails = err.message;
   }
 

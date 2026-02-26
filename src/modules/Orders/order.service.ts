@@ -1,3 +1,4 @@
+import { OrderStatus } from "../../../generated/prisma/enums"
 import { prisma } from "../../lib/prisma"
 
 const createOrder = async (payload: any) => {
@@ -34,8 +35,25 @@ const getOrderDetails = async (orderId: string, userId: string) => {
 
 
 
+const updateOrderStatus = async (status: OrderStatus, orderId: string,) => {
+  const result = await prisma.orders.update({
+    where: {
+      id: orderId,
+    },
+    data: {
+      status
+    },
+  });
+
+  return result
+}
+
+
+
+
 export const orderService = {
   createOrder,
   getUserOrder,
   getOrderDetails,
+  updateOrderStatus,
 };

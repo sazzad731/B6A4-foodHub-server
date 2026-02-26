@@ -13,7 +13,11 @@ router.get("/:id", auth(UserRole.CUSTOMER, UserRole.ADMIN, UserRole.PROVIDER), o
 
 
 
-router.post("/",auth(UserRole.CUSTOMER, UserRole.ADMIN, UserRole.PROVIDER), orderController.createOrder)
+router.post("/", auth(UserRole.CUSTOMER, UserRole.ADMIN, UserRole.PROVIDER), orderController.createOrder)
+
+
+
+router.patch("/provider/:id", auth(UserRole.PROVIDER, UserRole.CUSTOMER), orderController.updateOrderStatus)
 
 
 export const orderRoute = router
