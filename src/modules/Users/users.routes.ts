@@ -8,4 +8,9 @@ const router = Router()
 router.get("/",auth(UserRole.ADMIN), usersController.getAllUsers)
 
 
+
+router.patch("/:id", auth(UserRole.ADMIN), usersController.updateUserStatus)
+
+
+
 export const userRoute = router
