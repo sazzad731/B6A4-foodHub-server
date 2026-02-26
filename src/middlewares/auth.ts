@@ -41,7 +41,7 @@ const auth = (...roles: UserRole[]) => {
 
 
       if (!roles.includes(decoded.role as UserRole)) {
-        throw new Error("Unauthorized!!!");
+        throw new Error("Unauthorized access!!!");
       }
 
       req.user = decoded;

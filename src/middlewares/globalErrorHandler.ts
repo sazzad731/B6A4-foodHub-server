@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { Prisma } from "../../generated/prisma/client";
 
 export function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
-  console.log(err.message)
 
   let statusCode = 500;
   let message = "Internal server error!!"
@@ -30,9 +29,11 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
       statusCode = 401
       message = "Authentication failed against database server at {database_host}, the provided database credentials for {database_user} are not valid. Please make sure to provide valid database credentials for the database server at {database_host}."
     }
+  } else if (err.message === "Unauthorized access!!!" || err.message === "Unauthorized access!" || err.message === "Unauthorized access!!") {
+    statusCode = 401
+    message = "You are not authorized"
+    errorDetails = err.message;
   } else {
-    statusCode = 400
-    message = "Bad request"
     errorDetails = err.message;
   }
 
