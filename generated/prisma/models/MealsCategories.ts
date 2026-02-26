@@ -196,15 +196,15 @@ export type MealsCategoriesOrderByWithRelationInput = {
 
 export type MealsCategoriesWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  name?: string
   AND?: Prisma.MealsCategoriesWhereInput | Prisma.MealsCategoriesWhereInput[]
   OR?: Prisma.MealsCategoriesWhereInput[]
   NOT?: Prisma.MealsCategoriesWhereInput | Prisma.MealsCategoriesWhereInput[]
-  name?: Prisma.StringFilter<"MealsCategories"> | string
   slug?: Prisma.StringFilter<"MealsCategories"> | string
   createdAt?: Prisma.DateTimeFilter<"MealsCategories"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MealsCategories"> | Date | string
   meals?: Prisma.MealsListRelationFilter
-}, "id">
+}, "id" | "name">
 
 export type MealsCategoriesOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

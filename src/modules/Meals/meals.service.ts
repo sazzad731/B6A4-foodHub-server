@@ -29,8 +29,26 @@ const addMealToMenu = async (payload: any) => {
 
 
 
+
+const updateMeal = async (payload: any, mealId: string, providerId: string) => {
+  const result = await prisma.meals.update({
+    where: {
+      id: mealId,
+      providerId
+    },
+    data: payload
+  })
+
+  return result
+}
+
+
+
+
+
 export const mealsService = {
   getAllMeals,
   getMealDetail,
   addMealToMenu,
+  updateMeal,
 };

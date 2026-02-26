@@ -1,5 +1,6 @@
 model Meals{
   id            String            @id @default(uuid())
+  name          String
   providerId    String            
   provider      ProviderProfile   @relation(fields: [providerId], references: [id])
   categoryId    String            

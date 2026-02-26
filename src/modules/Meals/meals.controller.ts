@@ -54,9 +54,31 @@ const addMealToMenu = async (req: Request, res: Response, next: NextFunction) =>
 
 
 
+const updateMeal = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params
+    const { providerId } = req.body;
+    if(!providerId){
+      throw new Error("providerId is required")
+    }
+    const result = await mealsService.updateMeal(req.body, id as string, providerId);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Meal updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
 
 export const mealsController = {
   getAllMeals,
   getMealDetail,
   addMealToMenu,
+  updateMeal,
 };

@@ -36,7 +36,7 @@ export type ProviderProfileSumAggregateOutputType = {
 
 export type ProviderProfileMinAggregateOutputType = {
   id: string | null
-  providerId: string | null
+  userId: string | null
   businessName: string | null
   description: string | null
   address: string | null
@@ -48,7 +48,7 @@ export type ProviderProfileMinAggregateOutputType = {
 
 export type ProviderProfileMaxAggregateOutputType = {
   id: string | null
-  providerId: string | null
+  userId: string | null
   businessName: string | null
   description: string | null
   address: string | null
@@ -60,7 +60,7 @@ export type ProviderProfileMaxAggregateOutputType = {
 
 export type ProviderProfileCountAggregateOutputType = {
   id: number
-  providerId: number
+  userId: number
   businessName: number
   description: number
   address: number
@@ -82,7 +82,7 @@ export type ProviderProfileSumAggregateInputType = {
 
 export type ProviderProfileMinAggregateInputType = {
   id?: true
-  providerId?: true
+  userId?: true
   businessName?: true
   description?: true
   address?: true
@@ -94,7 +94,7 @@ export type ProviderProfileMinAggregateInputType = {
 
 export type ProviderProfileMaxAggregateInputType = {
   id?: true
-  providerId?: true
+  userId?: true
   businessName?: true
   description?: true
   address?: true
@@ -106,7 +106,7 @@ export type ProviderProfileMaxAggregateInputType = {
 
 export type ProviderProfileCountAggregateInputType = {
   id?: true
-  providerId?: true
+  userId?: true
   businessName?: true
   description?: true
   address?: true
@@ -205,7 +205,7 @@ export type ProviderProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 
 export type ProviderProfileGroupByOutputType = {
   id: string
-  providerId: string
+  userId: string
   businessName: string
   description: string
   address: string
@@ -240,7 +240,7 @@ export type ProviderProfileWhereInput = {
   OR?: Prisma.ProviderProfileWhereInput[]
   NOT?: Prisma.ProviderProfileWhereInput | Prisma.ProviderProfileWhereInput[]
   id?: Prisma.StringFilter<"ProviderProfile"> | string
-  providerId?: Prisma.StringFilter<"ProviderProfile"> | string
+  userId?: Prisma.StringFilter<"ProviderProfile"> | string
   businessName?: Prisma.StringFilter<"ProviderProfile"> | string
   description?: Prisma.StringFilter<"ProviderProfile"> | string
   address?: Prisma.StringFilter<"ProviderProfile"> | string
@@ -254,7 +254,7 @@ export type ProviderProfileWhereInput = {
 
 export type ProviderProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
@@ -268,7 +268,7 @@ export type ProviderProfileOrderByWithRelationInput = {
 
 export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  providerId?: string
+  userId?: string
   AND?: Prisma.ProviderProfileWhereInput | Prisma.ProviderProfileWhereInput[]
   OR?: Prisma.ProviderProfileWhereInput[]
   NOT?: Prisma.ProviderProfileWhereInput | Prisma.ProviderProfileWhereInput[]
@@ -281,11 +281,11 @@ export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   meals?: Prisma.MealsListRelationFilter
-}, "id" | "providerId">
+}, "id" | "userId">
 
 export type ProviderProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
@@ -305,7 +305,7 @@ export type ProviderProfileScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProviderProfileScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProviderProfileScalarWhereWithAggregatesInput | Prisma.ProviderProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
-  providerId?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   businessName?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   description?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   address?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
@@ -330,7 +330,7 @@ export type ProviderProfileCreateInput = {
 
 export type ProviderProfileUncheckedCreateInput = {
   id?: string
-  providerId: string
+  userId: string
   businessName: string
   description: string
   address: string
@@ -356,7 +356,7 @@ export type ProviderProfileUpdateInput = {
 
 export type ProviderProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  providerId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
@@ -369,7 +369,7 @@ export type ProviderProfileUncheckedUpdateInput = {
 
 export type ProviderProfileCreateManyInput = {
   id?: string
-  providerId: string
+  userId: string
   businessName: string
   description: string
   address: string
@@ -392,7 +392,7 @@ export type ProviderProfileUpdateManyMutationInput = {
 
 export type ProviderProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  providerId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
@@ -409,7 +409,7 @@ export type ProviderProfileScalarRelationFilter = {
 
 export type ProviderProfileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
@@ -425,7 +425,7 @@ export type ProviderProfileAvgOrderByAggregateInput = {
 
 export type ProviderProfileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
@@ -437,7 +437,7 @@ export type ProviderProfileMaxOrderByAggregateInput = {
 
 export type ProviderProfileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
@@ -516,7 +516,7 @@ export type ProviderProfileCreateWithoutMealsInput = {
 
 export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   id?: string
-  providerId: string
+  userId: string
   businessName: string
   description: string
   address: string
@@ -556,7 +556,7 @@ export type ProviderProfileUpdateWithoutMealsInput = {
 
 export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  providerId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
@@ -663,7 +663,7 @@ export type ProviderProfileCountOutputTypeCountMealsArgs<ExtArgs extends runtime
 
 export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  providerId?: boolean
+  userId?: boolean
   businessName?: boolean
   description?: boolean
   address?: boolean
@@ -678,7 +678,7 @@ export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  providerId?: boolean
+  userId?: boolean
   businessName?: boolean
   description?: boolean
   address?: boolean
@@ -691,7 +691,7 @@ export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
 
 export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  providerId?: boolean
+  userId?: boolean
   businessName?: boolean
   description?: boolean
   address?: boolean
@@ -704,7 +704,7 @@ export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
 
 export type ProviderProfileSelectScalar = {
   id?: boolean
-  providerId?: boolean
+  userId?: boolean
   businessName?: boolean
   description?: boolean
   address?: boolean
@@ -714,7 +714,7 @@ export type ProviderProfileSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "providerId" | "businessName" | "description" | "address" | "contactNumber" | "rating" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
+export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "businessName" | "description" | "address" | "contactNumber" | "rating" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
 export type ProviderProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
@@ -735,7 +735,7 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    providerId: string
+    userId: string
     businessName: string
     description: string
     address: string
@@ -1169,7 +1169,7 @@ export interface Prisma__ProviderProfileClient<T, Null = never, ExtArgs extends 
  */
 export interface ProviderProfileFieldRefs {
   readonly id: Prisma.FieldRef<"ProviderProfile", 'String'>
-  readonly providerId: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly userId: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly businessName: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly description: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly address: Prisma.FieldRef<"ProviderProfile", 'String'>

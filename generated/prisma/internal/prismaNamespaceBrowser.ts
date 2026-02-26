@@ -77,6 +77,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const MealsScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   providerId: 'providerId',
   categoryId: 'categoryId',
   description: 'description',
@@ -117,7 +118,7 @@ export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof 
 
 export const ProviderProfileScalarFieldEnum = {
   id: 'id',
-  providerId: 'providerId',
+  userId: 'userId',
   businessName: 'businessName',
   description: 'description',
   address: 'address',
