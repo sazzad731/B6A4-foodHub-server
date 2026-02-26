@@ -20,4 +20,7 @@ router.post("/provider", auth(UserRole.PROVIDER), mealsController.addMealToMenu)
 router.put("/provider/:id", auth(UserRole.PROVIDER), mealsController.updateMeal);
 
 
+router.delete("/provider/:id", auth(UserRole.PROVIDER, UserRole.ADMIN), mealsController.deleteMeal);
+
+
 export const mealsRoute = router
