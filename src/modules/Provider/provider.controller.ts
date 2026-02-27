@@ -40,7 +40,26 @@ const getProviderById = async (
 
 
 
+const createProvider = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId = req.user?.id;
+    const result = await providerService.createProvider(req.body, userId as string);
+    sendResponse(res, {
+      statusCode: 201,
+      success: true,
+      message: "Provider created successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+
+
 export const providerController = {
   getAllProviders,
   getProviderById,
+  createProvider,
 };

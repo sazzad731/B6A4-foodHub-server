@@ -321,7 +321,7 @@ export type ProviderProfileCreateInput = {
   description: string
   address: string
   contactNumber: string
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
@@ -335,7 +335,7 @@ export type ProviderProfileUncheckedCreateInput = {
   description: string
   address: string
   contactNumber: string
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealsUncheckedCreateNestedManyWithoutProviderInput
@@ -374,7 +374,7 @@ export type ProviderProfileCreateManyInput = {
   description: string
   address: string
   contactNumber: string
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -508,7 +508,7 @@ export type ProviderProfileCreateWithoutMealsInput = {
   description: string
   address: string
   contactNumber: string
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
@@ -521,7 +521,7 @@ export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   description: string
   address: string
   contactNumber: string
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -572,7 +572,7 @@ export type ProviderProfileCreateWithoutUserInput = {
   description: string
   address: string
   contactNumber: string
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealsCreateNestedManyWithoutProviderInput
@@ -584,7 +584,7 @@ export type ProviderProfileUncheckedCreateWithoutUserInput = {
   description: string
   address: string
   contactNumber: string
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealsUncheckedCreateNestedManyWithoutProviderInput
