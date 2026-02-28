@@ -9,7 +9,15 @@ const app: Application = express();
 
 // parsers
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://b6a4-food-hub-client.vercel.app",
+    ],
+    credentials: true,
+  }),
+);
 app.use(cookieParser())
 
 // application routes
