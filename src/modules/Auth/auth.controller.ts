@@ -32,9 +32,10 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     const result = await AuthService.loginUser(email, password);
 
     res.cookie("token", result.token, {
-      secure: false,
+      secure: true,
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     sendResponse(res, {

@@ -12,7 +12,7 @@ router.get("/:id", providerController.getProviderById)
 
 
 
-router.post("/",auth(UserRole.CUSTOMER), providerController.createProvider)
+router.post("/",auth(UserRole.PROVIDER), providerController.createProvider)
 
 
 export const providerRoute = router
