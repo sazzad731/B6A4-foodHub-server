@@ -1,14 +1,14 @@
 import { prisma } from "../../lib/prisma"
 
 const getAllMeals = async()=> {
-  const result = await prisma.meals.findMany();
+  const result = await prisma.meal.findMany();
   return result
 }
 
 
 
 const getMealDetail = async (mealId: string) => {
-  const result = await prisma.meals.findUniqueOrThrow({
+  const result = await prisma.meal.findUniqueOrThrow({
     where: {
       id: mealId
     }
@@ -20,7 +20,7 @@ const getMealDetail = async (mealId: string) => {
 
 
 const addMealToMenu = async (payload: any) => {
-  const result = await prisma.meals.create({
+  const result = await prisma.meal.create({
     data: payload
   })
 
@@ -31,7 +31,7 @@ const addMealToMenu = async (payload: any) => {
 
 
 const updateMeal = async (payload: any, mealId: string, providerId: string) => {
-  const result = await prisma.meals.update({
+  const result = await prisma.meal.update({
     where: {
       id: mealId,
       providerId
@@ -46,7 +46,7 @@ const updateMeal = async (payload: any, mealId: string, providerId: string) => {
 
 
 const deleteMeal = async (mealId: string) => {
-  return await prisma.meals.delete({
+  return await prisma.meal.delete({
     where: {
       id: mealId
     }

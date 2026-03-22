@@ -2,7 +2,7 @@ import { OrderStatus } from "../../../generated/prisma/enums"
 import { prisma } from "../../lib/prisma"
 
 const createOrder = async (payload: any) => {
-  const result = await prisma.orders.create({
+  const result = await prisma.order.create({
     data: payload
   })
   return result
@@ -11,7 +11,7 @@ const createOrder = async (payload: any) => {
 
 
 const getUserOrder = async (userId: string) => {
-  const result = await prisma.orders.findMany({
+  const result = await prisma.order.findMany({
     where: {
       customerId: userId
     },
@@ -23,7 +23,7 @@ const getUserOrder = async (userId: string) => {
 
 
 const getOrderDetails = async (orderId: string, userId: string) => {
-  const result = await prisma.orders.findUniqueOrThrow({
+  const result = await prisma.order.findUniqueOrThrow({
     where: {
       id: orderId,
       customerId: userId
@@ -36,7 +36,7 @@ const getOrderDetails = async (orderId: string, userId: string) => {
 
 
 const updateOrderStatus = async (status: OrderStatus, orderId: string,) => {
-  const result = await prisma.orders.update({
+  const result = await prisma.order.update({
     where: {
       id: orderId,
     },
