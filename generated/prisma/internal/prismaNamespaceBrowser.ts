@@ -51,11 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Meals: 'Meals',
-  MealsCategories: 'MealsCategories',
-  Orders: 'Orders',
+  Category: 'Category',
+  Meal: 'Meal',
+  Order: 'Order',
+  OrderItem: 'OrderItem',
   ProviderProfile: 'ProviderProfile',
-  Reviews: 'Reviews',
+  Review: 'Review',
   User: 'User'
 } as const
 
@@ -75,55 +76,85 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const MealsScalarFieldEnum = {
+export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  slug: 'slug',
+  image: 'image',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const MealScalarFieldEnum = {
+  id: 'id',
   providerId: 'providerId',
   categoryId: 'categoryId',
+  Title: 'Title',
   description: 'description',
   price: 'price',
   image: 'image',
   isAvailable: 'isAvailable',
+  isVegan: 'isVegan',
+  avgRating: 'avgRating',
+  reviewCount: 'reviewCount',
+  tags: 'tags',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type MealsScalarFieldEnum = (typeof MealsScalarFieldEnum)[keyof typeof MealsScalarFieldEnum]
+export type MealScalarFieldEnum = (typeof MealScalarFieldEnum)[keyof typeof MealScalarFieldEnum]
 
 
-export const MealsCategoriesScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  slug: 'slug',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type MealsCategoriesScalarFieldEnum = (typeof MealsCategoriesScalarFieldEnum)[keyof typeof MealsCategoriesScalarFieldEnum]
-
-
-export const OrdersScalarFieldEnum = {
+export const OrderScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
-  mealId: 'mealId',
-  quantity: 'quantity',
-  totalPrice: 'totalPrice',
+  providerId: 'providerId',
   status: 'status',
+  deliveryAddress: 'deliveryAddress',
+  deliveryNote: 'deliveryNote',
+  subtotal: 'subtotal',
+  deliveryFee: 'deliveryFee',
+  total: 'total',
+  paymentMethod: 'paymentMethod',
+  isPaid: 'isPaid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  mealId: 'mealId',
+  mealName: 'mealName',
+  image: 'image',
+  unitPrice: 'unitPrice',
+  quantity: 'quantity',
+  subtotal: 'subtotal'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
 export const ProviderProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  businessName: 'businessName',
+  restaurantName: 'restaurantName',
   description: 'description',
   address: 'address',
-  contactNumber: 'contactNumber',
-  rating: 'rating',
+  phone: 'phone',
+  image: 'image',
+  isOpen: 'isOpen',
+  cuisineTypes: 'cuisineTypes',
+  avgRating: 'avgRating',
+  totalOrders: 'totalOrders',
+  totalRevenue: 'totalRevenue',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -131,17 +162,18 @@ export const ProviderProfileScalarFieldEnum = {
 export type ProviderProfileScalarFieldEnum = (typeof ProviderProfileScalarFieldEnum)[keyof typeof ProviderProfileScalarFieldEnum]
 
 
-export const ReviewsScalarFieldEnum = {
+export const ReviewScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
   mealId: 'mealId',
+  orderId: 'orderId',
   rating: 'rating',
-  content: 'content',
+  comment: 'comment',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ReviewsScalarFieldEnum = (typeof ReviewsScalarFieldEnum)[keyof typeof ReviewsScalarFieldEnum]
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -151,6 +183,9 @@ export const UserScalarFieldEnum = {
   password: 'password',
   role: 'role',
   status: 'status',
+  phone: 'phone',
+  address: 'address',
+  image: 'image',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

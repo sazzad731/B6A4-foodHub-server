@@ -27,21 +27,29 @@ export type AggregateProviderProfile = {
 }
 
 export type ProviderProfileAvgAggregateOutputType = {
-  rating: number | null
+  avgRating: number | null
+  totalOrders: number | null
+  totalRevenue: number | null
 }
 
 export type ProviderProfileSumAggregateOutputType = {
-  rating: number | null
+  avgRating: number | null
+  totalOrders: number | null
+  totalRevenue: number | null
 }
 
 export type ProviderProfileMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  businessName: string | null
+  restaurantName: string | null
   description: string | null
   address: string | null
-  contactNumber: string | null
-  rating: number | null
+  phone: string | null
+  image: string | null
+  isOpen: boolean | null
+  avgRating: number | null
+  totalOrders: number | null
+  totalRevenue: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -49,11 +57,15 @@ export type ProviderProfileMinAggregateOutputType = {
 export type ProviderProfileMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  businessName: string | null
+  restaurantName: string | null
   description: string | null
   address: string | null
-  contactNumber: string | null
-  rating: number | null
+  phone: string | null
+  image: string | null
+  isOpen: boolean | null
+  avgRating: number | null
+  totalOrders: number | null
+  totalRevenue: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -61,11 +73,16 @@ export type ProviderProfileMaxAggregateOutputType = {
 export type ProviderProfileCountAggregateOutputType = {
   id: number
   userId: number
-  businessName: number
+  restaurantName: number
   description: number
   address: number
-  contactNumber: number
-  rating: number
+  phone: number
+  image: number
+  isOpen: number
+  cuisineTypes: number
+  avgRating: number
+  totalOrders: number
+  totalRevenue: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -73,21 +90,29 @@ export type ProviderProfileCountAggregateOutputType = {
 
 
 export type ProviderProfileAvgAggregateInputType = {
-  rating?: true
+  avgRating?: true
+  totalOrders?: true
+  totalRevenue?: true
 }
 
 export type ProviderProfileSumAggregateInputType = {
-  rating?: true
+  avgRating?: true
+  totalOrders?: true
+  totalRevenue?: true
 }
 
 export type ProviderProfileMinAggregateInputType = {
   id?: true
   userId?: true
-  businessName?: true
+  restaurantName?: true
   description?: true
   address?: true
-  contactNumber?: true
-  rating?: true
+  phone?: true
+  image?: true
+  isOpen?: true
+  avgRating?: true
+  totalOrders?: true
+  totalRevenue?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -95,11 +120,15 @@ export type ProviderProfileMinAggregateInputType = {
 export type ProviderProfileMaxAggregateInputType = {
   id?: true
   userId?: true
-  businessName?: true
+  restaurantName?: true
   description?: true
   address?: true
-  contactNumber?: true
-  rating?: true
+  phone?: true
+  image?: true
+  isOpen?: true
+  avgRating?: true
+  totalOrders?: true
+  totalRevenue?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -107,11 +136,16 @@ export type ProviderProfileMaxAggregateInputType = {
 export type ProviderProfileCountAggregateInputType = {
   id?: true
   userId?: true
-  businessName?: true
+  restaurantName?: true
   description?: true
   address?: true
-  contactNumber?: true
-  rating?: true
+  phone?: true
+  image?: true
+  isOpen?: true
+  cuisineTypes?: true
+  avgRating?: true
+  totalOrders?: true
+  totalRevenue?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -206,11 +240,16 @@ export type ProviderProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 export type ProviderProfileGroupByOutputType = {
   id: string
   userId: string
-  businessName: string
+  restaurantName: string
   description: string
   address: string
-  contactNumber: string
-  rating: number
+  phone: string
+  image: string
+  isOpen: boolean
+  cuisineTypes: string[]
+  avgRating: number
+  totalOrders: number
+  totalRevenue: number
   createdAt: Date
   updatedAt: Date
   _count: ProviderProfileCountAggregateOutputType | null
@@ -241,29 +280,41 @@ export type ProviderProfileWhereInput = {
   NOT?: Prisma.ProviderProfileWhereInput | Prisma.ProviderProfileWhereInput[]
   id?: Prisma.StringFilter<"ProviderProfile"> | string
   userId?: Prisma.StringFilter<"ProviderProfile"> | string
-  businessName?: Prisma.StringFilter<"ProviderProfile"> | string
+  restaurantName?: Prisma.StringFilter<"ProviderProfile"> | string
   description?: Prisma.StringFilter<"ProviderProfile"> | string
   address?: Prisma.StringFilter<"ProviderProfile"> | string
-  contactNumber?: Prisma.StringFilter<"ProviderProfile"> | string
-  rating?: Prisma.FloatFilter<"ProviderProfile"> | number
+  phone?: Prisma.StringFilter<"ProviderProfile"> | string
+  image?: Prisma.StringFilter<"ProviderProfile"> | string
+  isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
+  cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
+  avgRating?: Prisma.FloatFilter<"ProviderProfile"> | number
+  totalOrders?: Prisma.IntFilter<"ProviderProfile"> | number
+  totalRevenue?: Prisma.IntFilter<"ProviderProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  meals?: Prisma.MealsListRelationFilter
+  meals?: Prisma.MealListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }
 
 export type ProviderProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  businessName?: Prisma.SortOrder
+  restaurantName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  image?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  cuisineTypes?: Prisma.SortOrder
+  avgRating?: Prisma.SortOrder
+  totalOrders?: Prisma.SortOrder
+  totalRevenue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  meals?: Prisma.MealsOrderByRelationAggregateInput
+  meals?: Prisma.MealOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
 }
 
 export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -272,25 +323,36 @@ export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProviderProfileWhereInput | Prisma.ProviderProfileWhereInput[]
   OR?: Prisma.ProviderProfileWhereInput[]
   NOT?: Prisma.ProviderProfileWhereInput | Prisma.ProviderProfileWhereInput[]
-  businessName?: Prisma.StringFilter<"ProviderProfile"> | string
+  restaurantName?: Prisma.StringFilter<"ProviderProfile"> | string
   description?: Prisma.StringFilter<"ProviderProfile"> | string
   address?: Prisma.StringFilter<"ProviderProfile"> | string
-  contactNumber?: Prisma.StringFilter<"ProviderProfile"> | string
-  rating?: Prisma.FloatFilter<"ProviderProfile"> | number
+  phone?: Prisma.StringFilter<"ProviderProfile"> | string
+  image?: Prisma.StringFilter<"ProviderProfile"> | string
+  isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
+  cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
+  avgRating?: Prisma.FloatFilter<"ProviderProfile"> | number
+  totalOrders?: Prisma.IntFilter<"ProviderProfile"> | number
+  totalRevenue?: Prisma.IntFilter<"ProviderProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  meals?: Prisma.MealsListRelationFilter
+  meals?: Prisma.MealListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }, "id" | "userId">
 
 export type ProviderProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  businessName?: Prisma.SortOrder
+  restaurantName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  image?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  cuisineTypes?: Prisma.SortOrder
+  avgRating?: Prisma.SortOrder
+  totalOrders?: Prisma.SortOrder
+  totalRevenue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProviderProfileCountOrderByAggregateInput
@@ -306,86 +368,125 @@ export type ProviderProfileScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProviderProfileScalarWhereWithAggregatesInput | Prisma.ProviderProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   userId?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
-  businessName?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  restaurantName?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   description?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   address?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
-  contactNumber?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
-  rating?: Prisma.FloatWithAggregatesFilter<"ProviderProfile"> | number
+  phone?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  image?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  isOpen?: Prisma.BoolWithAggregatesFilter<"ProviderProfile"> | boolean
+  cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
+  avgRating?: Prisma.FloatWithAggregatesFilter<"ProviderProfile"> | number
+  totalOrders?: Prisma.IntWithAggregatesFilter<"ProviderProfile"> | number
+  totalRevenue?: Prisma.IntWithAggregatesFilter<"ProviderProfile"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
 }
 
 export type ProviderProfileCreateInput = {
   id?: string
-  businessName: string
-  description: string
+  restaurantName: string
+  description?: string
   address: string
-  contactNumber: string
-  rating?: number
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
-  meals?: Prisma.MealsCreateNestedManyWithoutProviderInput
+  user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
+  meals?: Prisma.MealCreateNestedManyWithoutProviderInput
+  orders?: Prisma.OrderCreateNestedManyWithoutProviderInput
 }
 
 export type ProviderProfileUncheckedCreateInput = {
   id?: string
   userId: string
-  businessName: string
-  description: string
+  restaurantName: string
+  description?: string
   address: string
-  contactNumber: string
-  rating?: number
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  meals?: Prisma.MealsUncheckedCreateNestedManyWithoutProviderInput
+  meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInput
 }
 
 export type ProviderProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutProviderProfilesNestedInput
-  meals?: Prisma.MealsUpdateManyWithoutProviderNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
+  meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutProviderNestedInput
 }
 
 export type ProviderProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  meals?: Prisma.MealsUncheckedUpdateManyWithoutProviderNestedInput
+  meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderNestedInput
 }
 
 export type ProviderProfileCreateManyInput = {
   id?: string
   userId: string
-  businessName: string
-  description: string
+  restaurantName: string
+  description?: string
   address: string
-  contactNumber: string
-  rating?: number
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ProviderProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -393,11 +494,16 @@ export type ProviderProfileUpdateManyMutationInput = {
 export type ProviderProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -410,27 +516,38 @@ export type ProviderProfileScalarRelationFilter = {
 export type ProviderProfileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  businessName?: Prisma.SortOrder
+  restaurantName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  image?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  cuisineTypes?: Prisma.SortOrder
+  avgRating?: Prisma.SortOrder
+  totalOrders?: Prisma.SortOrder
+  totalRevenue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ProviderProfileAvgOrderByAggregateInput = {
-  rating?: Prisma.SortOrder
+  avgRating?: Prisma.SortOrder
+  totalOrders?: Prisma.SortOrder
+  totalRevenue?: Prisma.SortOrder
 }
 
 export type ProviderProfileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  businessName?: Prisma.SortOrder
+  restaurantName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  image?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  avgRating?: Prisma.SortOrder
+  totalOrders?: Prisma.SortOrder
+  totalRevenue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -438,17 +555,23 @@ export type ProviderProfileMaxOrderByAggregateInput = {
 export type ProviderProfileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  businessName?: Prisma.SortOrder
+  restaurantName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  image?: Prisma.SortOrder
+  isOpen?: Prisma.SortOrder
+  avgRating?: Prisma.SortOrder
+  totalOrders?: Prisma.SortOrder
+  totalRevenue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ProviderProfileSumOrderByAggregateInput = {
-  rating?: Prisma.SortOrder
+  avgRating?: Prisma.SortOrder
+  totalOrders?: Prisma.SortOrder
+  totalRevenue?: Prisma.SortOrder
 }
 
 export type ProviderProfileNullableScalarRelationFilter = {
@@ -468,6 +591,29 @@ export type ProviderProfileUpdateOneRequiredWithoutMealsNestedInput = {
   upsert?: Prisma.ProviderProfileUpsertWithoutMealsInput
   connect?: Prisma.ProviderProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderProfileUpdateToOneWithWhereWithoutMealsInput, Prisma.ProviderProfileUpdateWithoutMealsInput>, Prisma.ProviderProfileUncheckedUpdateWithoutMealsInput>
+}
+
+export type ProviderProfileCreateNestedOneWithoutOrdersInput = {
+  create?: Prisma.XOR<Prisma.ProviderProfileCreateWithoutOrdersInput, Prisma.ProviderProfileUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.ProviderProfileCreateOrConnectWithoutOrdersInput
+  connect?: Prisma.ProviderProfileWhereUniqueInput
+}
+
+export type ProviderProfileUpdateOneRequiredWithoutOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.ProviderProfileCreateWithoutOrdersInput, Prisma.ProviderProfileUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.ProviderProfileCreateOrConnectWithoutOrdersInput
+  upsert?: Prisma.ProviderProfileUpsertWithoutOrdersInput
+  connect?: Prisma.ProviderProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderProfileUpdateToOneWithWhereWithoutOrdersInput, Prisma.ProviderProfileUpdateWithoutOrdersInput>, Prisma.ProviderProfileUncheckedUpdateWithoutOrdersInput>
+}
+
+export type ProviderProfileCreatecuisineTypesInput = {
+  set: string[]
+}
+
+export type ProviderProfileUpdatecuisineTypesInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type ProviderProfileCreateNestedOneWithoutUserInput = {
@@ -504,26 +650,38 @@ export type ProviderProfileUncheckedUpdateOneWithoutUserNestedInput = {
 
 export type ProviderProfileCreateWithoutMealsInput = {
   id?: string
-  businessName: string
-  description: string
+  restaurantName: string
+  description?: string
   address: string
-  contactNumber: string
-  rating?: number
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
+  orders?: Prisma.OrderCreateNestedManyWithoutProviderInput
 }
 
 export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   id?: string
   userId: string
-  businessName: string
-  description: string
+  restaurantName: string
+  description?: string
   address: string
-  contactNumber: string
-  rating?: number
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInput
 }
 
 export type ProviderProfileCreateOrConnectWithoutMealsInput = {
@@ -544,50 +702,162 @@ export type ProviderProfileUpdateToOneWithWhereWithoutMealsInput = {
 
 export type ProviderProfileUpdateWithoutMealsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutProviderProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutProviderNestedInput
 }
 
 export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderNestedInput
+}
+
+export type ProviderProfileCreateWithoutOrdersInput = {
+  id?: string
+  restaurantName: string
+  description?: string
+  address: string
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
+  meals?: Prisma.MealCreateNestedManyWithoutProviderInput
+}
+
+export type ProviderProfileUncheckedCreateWithoutOrdersInput = {
+  id?: string
+  userId: string
+  restaurantName: string
+  description?: string
+  address: string
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
+}
+
+export type ProviderProfileCreateOrConnectWithoutOrdersInput = {
+  where: Prisma.ProviderProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProviderProfileCreateWithoutOrdersInput, Prisma.ProviderProfileUncheckedCreateWithoutOrdersInput>
+}
+
+export type ProviderProfileUpsertWithoutOrdersInput = {
+  update: Prisma.XOR<Prisma.ProviderProfileUpdateWithoutOrdersInput, Prisma.ProviderProfileUncheckedUpdateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.ProviderProfileCreateWithoutOrdersInput, Prisma.ProviderProfileUncheckedCreateWithoutOrdersInput>
+  where?: Prisma.ProviderProfileWhereInput
+}
+
+export type ProviderProfileUpdateToOneWithWhereWithoutOrdersInput = {
+  where?: Prisma.ProviderProfileWhereInput
+  data: Prisma.XOR<Prisma.ProviderProfileUpdateWithoutOrdersInput, Prisma.ProviderProfileUncheckedUpdateWithoutOrdersInput>
+}
+
+export type ProviderProfileUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
+  meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
+}
+
+export type ProviderProfileUncheckedUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
 }
 
 export type ProviderProfileCreateWithoutUserInput = {
   id?: string
-  businessName: string
-  description: string
+  restaurantName: string
+  description?: string
   address: string
-  contactNumber: string
-  rating?: number
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  meals?: Prisma.MealsCreateNestedManyWithoutProviderInput
+  meals?: Prisma.MealCreateNestedManyWithoutProviderInput
+  orders?: Prisma.OrderCreateNestedManyWithoutProviderInput
 }
 
 export type ProviderProfileUncheckedCreateWithoutUserInput = {
   id?: string
-  businessName: string
-  description: string
+  restaurantName: string
+  description?: string
   address: string
-  contactNumber: string
-  rating?: number
+  phone: string
+  image: string
+  isOpen?: boolean
+  cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
+  avgRating?: number
+  totalOrders?: number
+  totalRevenue?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  meals?: Prisma.MealsUncheckedCreateNestedManyWithoutProviderInput
+  meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInput
 }
 
 export type ProviderProfileCreateOrConnectWithoutUserInput = {
@@ -608,26 +878,38 @@ export type ProviderProfileUpdateToOneWithWhereWithoutUserInput = {
 
 export type ProviderProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  meals?: Prisma.MealsUpdateManyWithoutProviderNestedInput
+  meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutProviderNestedInput
 }
 
 export type ProviderProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  restaurantName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
+  avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  meals?: Prisma.MealsUncheckedUpdateManyWithoutProviderNestedInput
+  meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderNestedInput
 }
 
 
@@ -637,10 +919,12 @@ export type ProviderProfileUncheckedUpdateWithoutUserInput = {
 
 export type ProviderProfileCountOutputType = {
   meals: number
+  orders: number
 }
 
 export type ProviderProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   meals?: boolean | ProviderProfileCountOutputTypeCountMealsArgs
+  orders?: boolean | ProviderProfileCountOutputTypeCountOrdersArgs
 }
 
 /**
@@ -657,33 +941,51 @@ export type ProviderProfileCountOutputTypeDefaultArgs<ExtArgs extends runtime.Ty
  * ProviderProfileCountOutputType without action
  */
 export type ProviderProfileCountOutputTypeCountMealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MealsWhereInput
+  where?: Prisma.MealWhereInput
+}
+
+/**
+ * ProviderProfileCountOutputType without action
+ */
+export type ProviderProfileCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
 }
 
 
 export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  businessName?: boolean
+  restaurantName?: boolean
   description?: boolean
   address?: boolean
-  contactNumber?: boolean
-  rating?: boolean
+  phone?: boolean
+  image?: boolean
+  isOpen?: boolean
+  cuisineTypes?: boolean
+  avgRating?: boolean
+  totalOrders?: boolean
+  totalRevenue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
+  orders?: boolean | Prisma.ProviderProfile$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.ProviderProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["providerProfile"]>
 
 export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  businessName?: boolean
+  restaurantName?: boolean
   description?: boolean
   address?: boolean
-  contactNumber?: boolean
-  rating?: boolean
+  phone?: boolean
+  image?: boolean
+  isOpen?: boolean
+  cuisineTypes?: boolean
+  avgRating?: boolean
+  totalOrders?: boolean
+  totalRevenue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -692,11 +994,16 @@ export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
 export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  businessName?: boolean
+  restaurantName?: boolean
   description?: boolean
   address?: boolean
-  contactNumber?: boolean
-  rating?: boolean
+  phone?: boolean
+  image?: boolean
+  isOpen?: boolean
+  cuisineTypes?: boolean
+  avgRating?: boolean
+  totalOrders?: boolean
+  totalRevenue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -705,19 +1012,25 @@ export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
 export type ProviderProfileSelectScalar = {
   id?: boolean
   userId?: boolean
-  businessName?: boolean
+  restaurantName?: boolean
   description?: boolean
   address?: boolean
-  contactNumber?: boolean
-  rating?: boolean
+  phone?: boolean
+  image?: boolean
+  isOpen?: boolean
+  cuisineTypes?: boolean
+  avgRating?: boolean
+  totalOrders?: boolean
+  totalRevenue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "businessName" | "description" | "address" | "contactNumber" | "rating" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
+export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "restaurantName" | "description" | "address" | "phone" | "image" | "isOpen" | "cuisineTypes" | "avgRating" | "totalOrders" | "totalRevenue" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
 export type ProviderProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
+  orders?: boolean | Prisma.ProviderProfile$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.ProviderProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProviderProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -731,16 +1044,22 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
   name: "ProviderProfile"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    meals: Prisma.$MealsPayload<ExtArgs>[]
+    meals: Prisma.$MealPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    businessName: string
+    restaurantName: string
     description: string
     address: string
-    contactNumber: string
-    rating: number
+    phone: string
+    image: string
+    isOpen: boolean
+    cuisineTypes: string[]
+    avgRating: number
+    totalOrders: number
+    totalRevenue: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["providerProfile"]>
@@ -1138,7 +1457,8 @@ readonly fields: ProviderProfileFieldRefs;
 export interface Prisma__ProviderProfileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  meals<T extends Prisma.ProviderProfile$mealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderProfile$mealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  meals<T extends Prisma.ProviderProfile$mealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderProfile$mealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.ProviderProfile$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderProfile$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1170,11 +1490,16 @@ export interface Prisma__ProviderProfileClient<T, Null = never, ExtArgs extends 
 export interface ProviderProfileFieldRefs {
   readonly id: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly userId: Prisma.FieldRef<"ProviderProfile", 'String'>
-  readonly businessName: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly restaurantName: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly description: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly address: Prisma.FieldRef<"ProviderProfile", 'String'>
-  readonly contactNumber: Prisma.FieldRef<"ProviderProfile", 'String'>
-  readonly rating: Prisma.FieldRef<"ProviderProfile", 'Float'>
+  readonly phone: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly image: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly isOpen: Prisma.FieldRef<"ProviderProfile", 'Boolean'>
+  readonly cuisineTypes: Prisma.FieldRef<"ProviderProfile", 'String[]'>
+  readonly avgRating: Prisma.FieldRef<"ProviderProfile", 'Float'>
+  readonly totalOrders: Prisma.FieldRef<"ProviderProfile", 'Int'>
+  readonly totalRevenue: Prisma.FieldRef<"ProviderProfile", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
 }
@@ -1577,23 +1902,47 @@ export type ProviderProfileDeleteManyArgs<ExtArgs extends runtime.Types.Extensio
  */
 export type ProviderProfile$mealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Meals
+   * Select specific fields to fetch from the Meal
    */
-  select?: Prisma.MealsSelect<ExtArgs> | null
+  select?: Prisma.MealSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Meals
+   * Omit specific fields from the Meal
    */
-  omit?: Prisma.MealsOmit<ExtArgs> | null
+  omit?: Prisma.MealOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MealsInclude<ExtArgs> | null
-  where?: Prisma.MealsWhereInput
-  orderBy?: Prisma.MealsOrderByWithRelationInput | Prisma.MealsOrderByWithRelationInput[]
-  cursor?: Prisma.MealsWhereUniqueInput
+  include?: Prisma.MealInclude<ExtArgs> | null
+  where?: Prisma.MealWhereInput
+  orderBy?: Prisma.MealOrderByWithRelationInput | Prisma.MealOrderByWithRelationInput[]
+  cursor?: Prisma.MealWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.MealsScalarFieldEnum | Prisma.MealsScalarFieldEnum[]
+  distinct?: Prisma.MealScalarFieldEnum | Prisma.MealScalarFieldEnum[]
+}
+
+/**
+ * ProviderProfile.orders
+ */
+export type ProviderProfile$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
 }
 
 /**

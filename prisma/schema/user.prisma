@@ -1,17 +1,24 @@
 model User {
-  id               String            @id @default(uuid())
-  name             String
-  email            String            @unique
-  password         String
-  role             Role
-  status           Status            @default(ACTIVE)
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  providerProfiles ProviderProfile?
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  password  String
+  role      Role   @default(CUSTOMER)
+  status    Status @default(ACTIVE)
+  phone     String?
+  address   String?
+  image     String?
 
-  reviews          Reviews[]
-  orders           Orders[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
+  // Relations
+  providerProfile ProviderProfile?
+  orders          Order[]  @relation("CustomerOrders")
+  reviews         Review[]
+
+  @@index([email])
+  @@index([role])
   @@index([status])
   @@map("users")
 }

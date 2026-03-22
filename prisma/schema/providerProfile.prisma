@@ -1,15 +1,28 @@
 model ProviderProfile {
-  id              String      @id @default(uuid())
-  userId          String      @unique
-  user            User        @relation(fields: [userId], references: [id])
-  businessName    String
-  description     String
-  address         String
-  contactNumber   String
-  rating          Float       @default(0)
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
-  meals           Meals[]
+  id             String  @id @default(uuid())
+  userId         String  @unique
+  restaurantName String
+  description    String  @default("")
+  address        String
+  phone          String
+  image          String
+  isOpen         Boolean @default(true)
 
+  cuisineTypes String[]
+
+  avgRating    Float @default(0)
+  totalOrders  Int   @default(0)
+  totalRevenue Int   @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meals  Meal[]
+  orders Order[] @relation("ProviderOrders")
+
+  @@index([userId])
+  @@index([isOpen])
   @@map("provider_profiles")
 }
