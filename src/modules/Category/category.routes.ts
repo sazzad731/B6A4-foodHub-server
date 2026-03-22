@@ -4,7 +4,10 @@ import { categoryController } from "./category.controller";
 const router = Router();
 
 
-router.get("/all", categoryController.getAllCategory)
+router.get("/get-all", categoryController.getAllCategory)
+
+
+router.post("/add-one", categoryController.addCategory);
 
 
 export const categoryRoutes = router

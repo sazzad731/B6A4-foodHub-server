@@ -18,6 +18,28 @@ const getAllCategory = async(req: Request, res: Response, next: NextFunction) =>
 
 
 
+
+
+const addCategory = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const category = req.body;
+    category.slug = category.name.toLowerCase().split(" ").join("-");
+    const result = await categoryService.addCategory(category);
+    sendResponse(res, {
+      statusCode: 201,
+      success: true,
+      message: "Category created successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
 export const categoryController = {
-  getAllCategory
+  getAllCategory,
+  addCategory
 }
