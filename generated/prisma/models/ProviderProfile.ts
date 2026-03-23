@@ -27,12 +27,14 @@ export type AggregateProviderProfile = {
 }
 
 export type ProviderProfileAvgAggregateOutputType = {
+  deliveryFee: number | null
   avgRating: number | null
   totalOrders: number | null
   totalRevenue: number | null
 }
 
 export type ProviderProfileSumAggregateOutputType = {
+  deliveryFee: number | null
   avgRating: number | null
   totalOrders: number | null
   totalRevenue: number | null
@@ -46,6 +48,7 @@ export type ProviderProfileMinAggregateOutputType = {
   address: string | null
   phone: string | null
   image: string | null
+  deliveryFee: number | null
   isOpen: boolean | null
   avgRating: number | null
   totalOrders: number | null
@@ -62,6 +65,7 @@ export type ProviderProfileMaxAggregateOutputType = {
   address: string | null
   phone: string | null
   image: string | null
+  deliveryFee: number | null
   isOpen: boolean | null
   avgRating: number | null
   totalOrders: number | null
@@ -78,6 +82,7 @@ export type ProviderProfileCountAggregateOutputType = {
   address: number
   phone: number
   image: number
+  deliveryFee: number
   isOpen: number
   cuisineTypes: number
   avgRating: number
@@ -90,12 +95,14 @@ export type ProviderProfileCountAggregateOutputType = {
 
 
 export type ProviderProfileAvgAggregateInputType = {
+  deliveryFee?: true
   avgRating?: true
   totalOrders?: true
   totalRevenue?: true
 }
 
 export type ProviderProfileSumAggregateInputType = {
+  deliveryFee?: true
   avgRating?: true
   totalOrders?: true
   totalRevenue?: true
@@ -109,6 +116,7 @@ export type ProviderProfileMinAggregateInputType = {
   address?: true
   phone?: true
   image?: true
+  deliveryFee?: true
   isOpen?: true
   avgRating?: true
   totalOrders?: true
@@ -125,6 +133,7 @@ export type ProviderProfileMaxAggregateInputType = {
   address?: true
   phone?: true
   image?: true
+  deliveryFee?: true
   isOpen?: true
   avgRating?: true
   totalOrders?: true
@@ -141,6 +150,7 @@ export type ProviderProfileCountAggregateInputType = {
   address?: true
   phone?: true
   image?: true
+  deliveryFee?: true
   isOpen?: true
   cuisineTypes?: true
   avgRating?: true
@@ -245,6 +255,7 @@ export type ProviderProfileGroupByOutputType = {
   address: string
   phone: string
   image: string
+  deliveryFee: number
   isOpen: boolean
   cuisineTypes: string[]
   avgRating: number
@@ -285,6 +296,7 @@ export type ProviderProfileWhereInput = {
   address?: Prisma.StringFilter<"ProviderProfile"> | string
   phone?: Prisma.StringFilter<"ProviderProfile"> | string
   image?: Prisma.StringFilter<"ProviderProfile"> | string
+  deliveryFee?: Prisma.IntFilter<"ProviderProfile"> | number
   isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
   cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
   avgRating?: Prisma.FloatFilter<"ProviderProfile"> | number
@@ -305,6 +317,7 @@ export type ProviderProfileOrderByWithRelationInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  deliveryFee?: Prisma.SortOrder
   isOpen?: Prisma.SortOrder
   cuisineTypes?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -328,6 +341,7 @@ export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   address?: Prisma.StringFilter<"ProviderProfile"> | string
   phone?: Prisma.StringFilter<"ProviderProfile"> | string
   image?: Prisma.StringFilter<"ProviderProfile"> | string
+  deliveryFee?: Prisma.IntFilter<"ProviderProfile"> | number
   isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
   cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
   avgRating?: Prisma.FloatFilter<"ProviderProfile"> | number
@@ -348,6 +362,7 @@ export type ProviderProfileOrderByWithAggregationInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  deliveryFee?: Prisma.SortOrder
   isOpen?: Prisma.SortOrder
   cuisineTypes?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -373,6 +388,7 @@ export type ProviderProfileScalarWhereWithAggregatesInput = {
   address?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   phone?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   image?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  deliveryFee?: Prisma.IntWithAggregatesFilter<"ProviderProfile"> | number
   isOpen?: Prisma.BoolWithAggregatesFilter<"ProviderProfile"> | boolean
   cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
   avgRating?: Prisma.FloatWithAggregatesFilter<"ProviderProfile"> | number
@@ -389,6 +405,7 @@ export type ProviderProfileCreateInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -409,6 +426,7 @@ export type ProviderProfileUncheckedCreateInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -427,6 +445,7 @@ export type ProviderProfileUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -447,6 +466,7 @@ export type ProviderProfileUncheckedUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -466,6 +486,7 @@ export type ProviderProfileCreateManyInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -482,6 +503,7 @@ export type ProviderProfileUpdateManyMutationInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -499,6 +521,7 @@ export type ProviderProfileUncheckedUpdateManyInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -521,6 +544,7 @@ export type ProviderProfileCountOrderByAggregateInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  deliveryFee?: Prisma.SortOrder
   isOpen?: Prisma.SortOrder
   cuisineTypes?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -531,6 +555,7 @@ export type ProviderProfileCountOrderByAggregateInput = {
 }
 
 export type ProviderProfileAvgOrderByAggregateInput = {
+  deliveryFee?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
   totalOrders?: Prisma.SortOrder
   totalRevenue?: Prisma.SortOrder
@@ -544,6 +569,7 @@ export type ProviderProfileMaxOrderByAggregateInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  deliveryFee?: Prisma.SortOrder
   isOpen?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
   totalOrders?: Prisma.SortOrder
@@ -560,6 +586,7 @@ export type ProviderProfileMinOrderByAggregateInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  deliveryFee?: Prisma.SortOrder
   isOpen?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
   totalOrders?: Prisma.SortOrder
@@ -569,6 +596,7 @@ export type ProviderProfileMinOrderByAggregateInput = {
 }
 
 export type ProviderProfileSumOrderByAggregateInput = {
+  deliveryFee?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
   totalOrders?: Prisma.SortOrder
   totalRevenue?: Prisma.SortOrder
@@ -655,6 +683,7 @@ export type ProviderProfileCreateWithoutMealsInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -674,6 +703,7 @@ export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -707,6 +737,7 @@ export type ProviderProfileUpdateWithoutMealsInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -726,6 +757,7 @@ export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -743,6 +775,7 @@ export type ProviderProfileCreateWithoutOrdersInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -762,6 +795,7 @@ export type ProviderProfileUncheckedCreateWithoutOrdersInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -795,6 +829,7 @@ export type ProviderProfileUpdateWithoutOrdersInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -814,6 +849,7 @@ export type ProviderProfileUncheckedUpdateWithoutOrdersInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -831,6 +867,7 @@ export type ProviderProfileCreateWithoutUserInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -849,6 +886,7 @@ export type ProviderProfileUncheckedCreateWithoutUserInput = {
   address: string
   phone: string
   image: string
+  deliveryFee?: number
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
@@ -883,6 +921,7 @@ export type ProviderProfileUpdateWithoutUserInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -901,6 +940,7 @@ export type ProviderProfileUncheckedUpdateWithoutUserInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -960,6 +1000,7 @@ export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
   address?: boolean
   phone?: boolean
   image?: boolean
+  deliveryFee?: boolean
   isOpen?: boolean
   cuisineTypes?: boolean
   avgRating?: boolean
@@ -981,6 +1022,7 @@ export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   address?: boolean
   phone?: boolean
   image?: boolean
+  deliveryFee?: boolean
   isOpen?: boolean
   cuisineTypes?: boolean
   avgRating?: boolean
@@ -999,6 +1041,7 @@ export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   address?: boolean
   phone?: boolean
   image?: boolean
+  deliveryFee?: boolean
   isOpen?: boolean
   cuisineTypes?: boolean
   avgRating?: boolean
@@ -1017,6 +1060,7 @@ export type ProviderProfileSelectScalar = {
   address?: boolean
   phone?: boolean
   image?: boolean
+  deliveryFee?: boolean
   isOpen?: boolean
   cuisineTypes?: boolean
   avgRating?: boolean
@@ -1026,7 +1070,7 @@ export type ProviderProfileSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "restaurantName" | "description" | "address" | "phone" | "image" | "isOpen" | "cuisineTypes" | "avgRating" | "totalOrders" | "totalRevenue" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
+export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "restaurantName" | "description" | "address" | "phone" | "image" | "deliveryFee" | "isOpen" | "cuisineTypes" | "avgRating" | "totalOrders" | "totalRevenue" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
 export type ProviderProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
@@ -1055,6 +1099,7 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     address: string
     phone: string
     image: string
+    deliveryFee: number
     isOpen: boolean
     cuisineTypes: string[]
     avgRating: number
@@ -1495,6 +1540,7 @@ export interface ProviderProfileFieldRefs {
   readonly address: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly phone: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly image: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly deliveryFee: Prisma.FieldRef<"ProviderProfile", 'Int'>
   readonly isOpen: Prisma.FieldRef<"ProviderProfile", 'Boolean'>
   readonly cuisineTypes: Prisma.FieldRef<"ProviderProfile", 'String[]'>
   readonly avgRating: Prisma.FieldRef<"ProviderProfile", 'Float'>

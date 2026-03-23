@@ -6,6 +6,7 @@ model ProviderProfile {
   address        String
   phone          String
   image          String
+  deliveryFee    Int     @default(0)
   isOpen         Boolean @default(true)
 
   cuisineTypes String[]

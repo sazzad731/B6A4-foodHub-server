@@ -7,7 +7,7 @@ model Order {
   deliveryNote    String?
   subtotal        Int
   deliveryFee     Int         @default(0)
-  total           Int // subtotal + deliveryFee
+  total           Int
   paymentMethod   String      @default("cod")
   isPaid          Boolean     @default(false)
 
