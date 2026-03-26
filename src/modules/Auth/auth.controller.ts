@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { AuthService } from "./auth.service";
-import { JwtPayload } from "jsonwebtoken";
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {

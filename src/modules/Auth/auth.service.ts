@@ -2,16 +2,56 @@ import bcrypt from "bcryptjs";
 import { prisma } from "../../lib/prisma";
 import jwt from "jsonwebtoken"
 import config from "../../config";
+import { UserRole } from "../../middlewares/auth";
 
 
 
 const createUser = async (payload: any) => {
-    const hashedPassword = await bcrypt.hash(payload.password, 10);
-    const result = await prisma.user.create({
-        data: { ...payload, password: hashedPassword }
+  const hashedPassword = await bcrypt.hash(payload.password, 10);
+
+  const { role, name, email, phone, restaurantName, address, image } = payload;
+
+  const customerValue = {
+    role,
+    name,
+    email,
+    phone,
+  };
+
+  if (payload.role === UserRole.PROVIDER) {
+    const result = await prisma.$transaction(async (tx) => {
+      const user = await tx.user.create({
+        data: {
+          ...customerValue,
+          password: hashedPassword,
+        },
+      });
+
+      const providerValue = {
+        userId: user.id,
+        restaurantName,
+        phone,
+        address,
+        image,
+      };
+
+      
+      await tx.providerProfile.create({
+        data: providerValue,
+      });
+
+      return user;
     });
-    return result
-}
+
+    return result;
+  }
+
+  const newUser = await prisma.user.create({
+    data: { ...customerValue, password: hashedPassword },
+  });
+
+  return newUser;
+};
 
 
 
