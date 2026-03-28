@@ -1,67 +1,85 @@
+import { MealWhereInput } from "../../../generated/prisma/models";
 import { prisma } from "../../lib/prisma"
 
-const getAllMeals = async (payload: {
+const getAllMeals = async ({
+  search,
+  minPrice,
+  maxPrice,
+  page,
+  skip,
+  limit,
+  sortBy,
+  sortOrder
+}: {
   search: string;
   minPrice: string;
   maxPrice: string;
+  page: number;
+  skip: number;
+  limit: number;
+  sortBy: string,
+  sortOrder: string
 }) => {
-  const result = await prisma.meal.findMany({
-    where: {
-      AND: [
+  const andCondition: MealWhereInput[] = [
+    {
+      OR: [
         {
-          OR: [
-            {
-              title: {
-                contains: payload.search,
-                mode: "insensitive",
-              },
+          title: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          description: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          tags: {
+            has: search,
+          },
+        },
+        {
+          category: {
+            name: {
+              contains: search,
+              mode: "insensitive",
             },
-            {
-              description: {
-                contains: payload.search,
-                mode: "insensitive",
-              },
-            },
-            {
-              tags: {
-                has: payload.search,
-              },
-            },
-            {
-              category: {
-                name: {
-                  contains: payload.search,
+          },
+        },
+        {
+          provider: {
+            OR: [
+              {
+                restaurantName: {
+                  contains: search,
                   mode: "insensitive",
                 },
               },
-            },
-            {
-              provider: {
-                OR: [
-                  {
-                    restaurantName: {
-                      contains: payload.search,
-                      mode: "insensitive",
-                    },
-                  },
-                  {
-                    address: {
-                      contains: payload.search,
-                      mode: "insensitive",
-                    },
-                  },
-                ],
+              {
+                address: {
+                  contains: search,
+                  mode: "insensitive",
+                },
               },
-            },
-          ],
-        },
-        {
-          price: {
-            gte: Number(payload.minPrice),
-            lte: Number(payload.maxPrice),
+            ],
           },
         },
       ],
+    },
+    {
+      price: {
+        gte: Number(minPrice),
+        lte: Number(maxPrice),
+      },
+    },
+  ];
+  const result = await prisma.meal.findMany({
+    skip,
+    take: limit,
+    where: {
+      AND: andCondition,
     },
     include: {
       provider: {
@@ -77,8 +95,25 @@ const getAllMeals = async (payload: {
         },
       },
     },
+    orderBy: {
+      [sortBy]: sortOrder,
+    },
   });
-  return result;
+
+  const total = await prisma.meal.count({
+    where: {
+      AND: andCondition
+    }
+  })
+  return {
+    meals: result,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPage: Math.ceil(total/limit)
+    }
+  };
 };
 
 
