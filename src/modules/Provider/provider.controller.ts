@@ -4,7 +4,9 @@ import { providerService } from "./provider.service";
 
 const getAllProviders = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await providerService.getAllProviders();
+    const { location } = req.query;
+    const locationString = typeof location === "string" ? location : ""
+    const result = await providerService.getAllProviders({location: locationString});
     sendResponse(res, {
       statusCode: 200,
       success: true,

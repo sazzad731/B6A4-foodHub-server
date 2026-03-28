@@ -37,10 +37,20 @@ const getAllMeals = async (payload: {
             },
             {
               provider: {
-                restaurantName: {
-                  contains: payload.search,
-                  mode: "insensitive",
-                },
+                OR: [
+                  {
+                    restaurantName: {
+                      contains: payload.search,
+                      mode: "insensitive",
+                    },
+                  },
+                  {
+                    address: {
+                      contains: payload.search,
+                      mode: "insensitive",
+                    },
+                  },
+                ],
               },
             },
           ],
@@ -58,6 +68,7 @@ const getAllMeals = async (payload: {
         select: {
           restaurantName: true,
           image: true,
+          address: true,
         },
       },
       category: {

@@ -27,7 +27,7 @@ const routerManager = [
     route: categoryRoutes
   },
   {
-    path: "/providers",
+    path: "/provider",
     route: providerRoute
   },
   {

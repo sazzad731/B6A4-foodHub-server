@@ -5,7 +5,7 @@ import auth, { UserRole } from "../../middlewares/auth";
 const router = Router()
 
 
-router.get("/", providerController.getAllProviders)
+router.get("/get-all", providerController.getAllProviders)
 
 
 router.get("/:id", providerController.getProviderById)

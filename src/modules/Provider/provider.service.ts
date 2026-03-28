@@ -1,8 +1,29 @@
 import { prisma } from "../../lib/prisma"
 import { UserRole } from "../../middlewares/auth";
 
-const getAllProviders = async () => {
-  const result = await prisma.providerProfile.findMany();
+const getAllProviders = async (payload: {location: string}) => {
+  const { location } = payload;
+  const result = await prisma.providerProfile.findMany({
+    where: {
+      address: {
+        contains: location,
+        mode: "insensitive"
+      }
+    },
+    include: {
+      meals: {
+        include: {
+          category: {
+            select: {
+              name: true,
+              slug: true,
+              image: true
+            }
+          }
+        }
+      }
+    }
+  });
   return result;
 }
 
