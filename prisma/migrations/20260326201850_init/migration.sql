@@ -29,6 +29,7 @@ CREATE TABLE "meals" (
     "description" TEXT NOT NULL DEFAULT '',
     "price" INTEGER NOT NULL,
     "image" TEXT NOT NULL,
+    "prepTime" INTEGER NOT NULL DEFAULT 20,
     "isAvailable" BOOLEAN NOT NULL DEFAULT true,
     "isVegan" BOOLEAN NOT NULL DEFAULT false,
     "avgRating" DOUBLE PRECISION NOT NULL DEFAULT 0,

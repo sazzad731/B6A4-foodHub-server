@@ -1,9 +1,74 @@
 import { prisma } from "../../lib/prisma"
 
-const getAllMeals = async()=> {
-  const result = await prisma.meal.findMany();
-  return result
-}
+const getAllMeals = async (payload: {
+  search: string;
+  minPrice: string;
+  maxPrice: string;
+}) => {
+  const result = await prisma.meal.findMany({
+    where: {
+      AND: [
+        {
+          OR: [
+            {
+              title: {
+                contains: payload.search,
+                mode: "insensitive",
+              },
+            },
+            {
+              description: {
+                contains: payload.search,
+                mode: "insensitive",
+              },
+            },
+            {
+              tags: {
+                has: payload.search,
+              },
+            },
+            {
+              category: {
+                name: {
+                  contains: payload.search,
+                  mode: "insensitive",
+                },
+              },
+            },
+            {
+              provider: {
+                restaurantName: {
+                  contains: payload.search,
+                  mode: "insensitive",
+                },
+              },
+            },
+          ],
+        },
+        {
+          price: {
+            gte: Number(payload.minPrice),
+            lte: Number(payload.maxPrice),
+          },
+        },
+      ],
+    },
+    include: {
+      provider: {
+        select: {
+          restaurantName: true,
+          image: true,
+        },
+      },
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+  return result;
+};
 
 
 

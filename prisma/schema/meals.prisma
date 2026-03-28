@@ -6,6 +6,7 @@ model Meal {
   description String  @default("")
   price       Int
   image       String
+  prepTime    Int     @default(20)
   isAvailable Boolean @default(true)
   isVegan     Boolean @default(false)
 

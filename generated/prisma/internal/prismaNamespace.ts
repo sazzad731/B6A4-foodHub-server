@@ -988,6 +988,7 @@ export const MealScalarFieldEnum = {
   description: 'description',
   price: 'price',
   image: 'image',
+  prepTime: 'prepTime',
   isAvailable: 'isAvailable',
   isVegan: 'isVegan',
   avgRating: 'avgRating',

@@ -28,12 +28,14 @@ export type AggregateMeal = {
 
 export type MealAvgAggregateOutputType = {
   price: number | null
+  prepTime: number | null
   avgRating: number | null
   reviewCount: number | null
 }
 
 export type MealSumAggregateOutputType = {
   price: number | null
+  prepTime: number | null
   avgRating: number | null
   reviewCount: number | null
 }
@@ -46,6 +48,7 @@ export type MealMinAggregateOutputType = {
   description: string | null
   price: number | null
   image: string | null
+  prepTime: number | null
   isAvailable: boolean | null
   isVegan: boolean | null
   avgRating: number | null
@@ -62,6 +65,7 @@ export type MealMaxAggregateOutputType = {
   description: string | null
   price: number | null
   image: string | null
+  prepTime: number | null
   isAvailable: boolean | null
   isVegan: boolean | null
   avgRating: number | null
@@ -78,6 +82,7 @@ export type MealCountAggregateOutputType = {
   description: number
   price: number
   image: number
+  prepTime: number
   isAvailable: number
   isVegan: number
   avgRating: number
@@ -91,12 +96,14 @@ export type MealCountAggregateOutputType = {
 
 export type MealAvgAggregateInputType = {
   price?: true
+  prepTime?: true
   avgRating?: true
   reviewCount?: true
 }
 
 export type MealSumAggregateInputType = {
   price?: true
+  prepTime?: true
   avgRating?: true
   reviewCount?: true
 }
@@ -109,6 +116,7 @@ export type MealMinAggregateInputType = {
   description?: true
   price?: true
   image?: true
+  prepTime?: true
   isAvailable?: true
   isVegan?: true
   avgRating?: true
@@ -125,6 +133,7 @@ export type MealMaxAggregateInputType = {
   description?: true
   price?: true
   image?: true
+  prepTime?: true
   isAvailable?: true
   isVegan?: true
   avgRating?: true
@@ -141,6 +150,7 @@ export type MealCountAggregateInputType = {
   description?: true
   price?: true
   image?: true
+  prepTime?: true
   isAvailable?: true
   isVegan?: true
   avgRating?: true
@@ -245,6 +255,7 @@ export type MealGroupByOutputType = {
   description: string
   price: number
   image: string
+  prepTime: number
   isAvailable: boolean
   isVegan: boolean
   avgRating: number
@@ -285,6 +296,7 @@ export type MealWhereInput = {
   description?: Prisma.StringFilter<"Meal"> | string
   price?: Prisma.IntFilter<"Meal"> | number
   image?: Prisma.StringFilter<"Meal"> | string
+  prepTime?: Prisma.IntFilter<"Meal"> | number
   isAvailable?: Prisma.BoolFilter<"Meal"> | boolean
   isVegan?: Prisma.BoolFilter<"Meal"> | boolean
   avgRating?: Prisma.FloatFilter<"Meal"> | number
@@ -306,6 +318,7 @@ export type MealOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  prepTime?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   isVegan?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -330,6 +343,7 @@ export type MealWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"Meal"> | string
   price?: Prisma.IntFilter<"Meal"> | number
   image?: Prisma.StringFilter<"Meal"> | string
+  prepTime?: Prisma.IntFilter<"Meal"> | number
   isAvailable?: Prisma.BoolFilter<"Meal"> | boolean
   isVegan?: Prisma.BoolFilter<"Meal"> | boolean
   avgRating?: Prisma.FloatFilter<"Meal"> | number
@@ -351,6 +365,7 @@ export type MealOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  prepTime?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   isVegan?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -376,6 +391,7 @@ export type MealScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"Meal"> | string
   price?: Prisma.IntWithAggregatesFilter<"Meal"> | number
   image?: Prisma.StringWithAggregatesFilter<"Meal"> | string
+  prepTime?: Prisma.IntWithAggregatesFilter<"Meal"> | number
   isAvailable?: Prisma.BoolWithAggregatesFilter<"Meal"> | boolean
   isVegan?: Prisma.BoolWithAggregatesFilter<"Meal"> | boolean
   avgRating?: Prisma.FloatWithAggregatesFilter<"Meal"> | number
@@ -391,6 +407,7 @@ export type MealCreateInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -412,6 +429,7 @@ export type MealUncheckedCreateInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -429,6 +447,7 @@ export type MealUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -450,6 +469,7 @@ export type MealUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -469,6 +489,7 @@ export type MealCreateManyInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -484,6 +505,7 @@ export type MealUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -501,6 +523,7 @@ export type MealUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -536,6 +559,7 @@ export type MealCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  prepTime?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   isVegan?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -547,6 +571,7 @@ export type MealCountOrderByAggregateInput = {
 
 export type MealAvgOrderByAggregateInput = {
   price?: Prisma.SortOrder
+  prepTime?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
   reviewCount?: Prisma.SortOrder
 }
@@ -559,6 +584,7 @@ export type MealMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  prepTime?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   isVegan?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -575,6 +601,7 @@ export type MealMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  prepTime?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   isVegan?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
@@ -585,6 +612,7 @@ export type MealMinOrderByAggregateInput = {
 
 export type MealSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
+  prepTime?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
   reviewCount?: Prisma.SortOrder
 }
@@ -733,6 +761,7 @@ export type MealCreateWithoutCategoryInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -752,6 +781,7 @@ export type MealUncheckedCreateWithoutCategoryInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -800,6 +830,7 @@ export type MealScalarWhereInput = {
   description?: Prisma.StringFilter<"Meal"> | string
   price?: Prisma.IntFilter<"Meal"> | number
   image?: Prisma.StringFilter<"Meal"> | string
+  prepTime?: Prisma.IntFilter<"Meal"> | number
   isAvailable?: Prisma.BoolFilter<"Meal"> | boolean
   isVegan?: Prisma.BoolFilter<"Meal"> | boolean
   avgRating?: Prisma.FloatFilter<"Meal"> | number
@@ -815,6 +846,7 @@ export type MealCreateWithoutOrderItemsInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -835,6 +867,7 @@ export type MealUncheckedCreateWithoutOrderItemsInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -867,6 +900,7 @@ export type MealUpdateWithoutOrderItemsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -887,6 +921,7 @@ export type MealUncheckedUpdateWithoutOrderItemsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -903,6 +938,7 @@ export type MealCreateWithoutProviderInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -922,6 +958,7 @@ export type MealUncheckedCreateWithoutProviderInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -965,6 +1002,7 @@ export type MealCreateWithoutReviewsInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -985,6 +1023,7 @@ export type MealUncheckedCreateWithoutReviewsInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -1017,6 +1056,7 @@ export type MealUpdateWithoutReviewsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1037,6 +1077,7 @@ export type MealUncheckedUpdateWithoutReviewsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1054,6 +1095,7 @@ export type MealCreateManyCategoryInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -1069,6 +1111,7 @@ export type MealUpdateWithoutCategoryInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1088,6 +1131,7 @@ export type MealUncheckedUpdateWithoutCategoryInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1106,6 +1150,7 @@ export type MealUncheckedUpdateManyWithoutCategoryInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1122,6 +1167,7 @@ export type MealCreateManyProviderInput = {
   description?: string
   price: number
   image: string
+  prepTime?: number
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: number
@@ -1137,6 +1183,7 @@ export type MealUpdateWithoutProviderInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1156,6 +1203,7 @@ export type MealUncheckedUpdateWithoutProviderInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1174,6 +1222,7 @@ export type MealUncheckedUpdateManyWithoutProviderInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.IntFieldUpdateOperationsInput | number
   image?: Prisma.StringFieldUpdateOperationsInput | string
+  prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVegan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1231,6 +1280,7 @@ export type MealSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   description?: boolean
   price?: boolean
   image?: boolean
+  prepTime?: boolean
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: boolean
@@ -1253,6 +1303,7 @@ export type MealSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   description?: boolean
   price?: boolean
   image?: boolean
+  prepTime?: boolean
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: boolean
@@ -1272,6 +1323,7 @@ export type MealSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   description?: boolean
   price?: boolean
   image?: boolean
+  prepTime?: boolean
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: boolean
@@ -1291,6 +1343,7 @@ export type MealSelectScalar = {
   description?: boolean
   price?: boolean
   image?: boolean
+  prepTime?: boolean
   isAvailable?: boolean
   isVegan?: boolean
   avgRating?: boolean
@@ -1300,7 +1353,7 @@ export type MealSelectScalar = {
   updatedAt?: boolean
 }
 
-export type MealOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "providerId" | "categoryId" | "title" | "description" | "price" | "image" | "isAvailable" | "isVegan" | "avgRating" | "reviewCount" | "tags" | "createdAt" | "updatedAt", ExtArgs["result"]["meal"]>
+export type MealOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "providerId" | "categoryId" | "title" | "description" | "price" | "image" | "prepTime" | "isAvailable" | "isVegan" | "avgRating" | "reviewCount" | "tags" | "createdAt" | "updatedAt", ExtArgs["result"]["meal"]>
 export type MealInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   provider?: boolean | Prisma.ProviderProfileDefaultArgs<ExtArgs>
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
@@ -1333,6 +1386,7 @@ export type $MealPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     description: string
     price: number
     image: string
+    prepTime: number
     isAvailable: boolean
     isVegan: boolean
     avgRating: number
@@ -1774,6 +1828,7 @@ export interface MealFieldRefs {
   readonly description: Prisma.FieldRef<"Meal", 'String'>
   readonly price: Prisma.FieldRef<"Meal", 'Int'>
   readonly image: Prisma.FieldRef<"Meal", 'String'>
+  readonly prepTime: Prisma.FieldRef<"Meal", 'Int'>
   readonly isAvailable: Prisma.FieldRef<"Meal", 'Boolean'>
   readonly isVegan: Prisma.FieldRef<"Meal", 'Boolean'>
   readonly avgRating: Prisma.FieldRef<"Meal", 'Float'>

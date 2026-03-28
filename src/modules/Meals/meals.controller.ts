@@ -5,7 +5,11 @@ import sendResponse from "../../utils/sendResponse";
 
 const getAllMeals = async(req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await mealsService.getAllMeals()
+    const { search } = req.query;
+    const { price_range } = req.query;
+    const searchString = typeof search === "string" ? search : ""
+    const [minPrice, maxPrice] = typeof price_range === "string" ? price_range.split(",").length > 1 ? price_range.split(",") : [price_range, "10000"] : ["0", "10000"];
+    const result = await mealsService.getAllMeals({search: searchString, minPrice, maxPrice})
     sendResponse(res, {
       statusCode: 200,
       success: true,
