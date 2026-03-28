@@ -9,19 +9,6 @@ const getAllProviders = async (payload: {location: string}) => {
         contains: location,
         mode: "insensitive"
       }
-    },
-    include: {
-      meals: {
-        include: {
-          category: {
-            select: {
-              name: true,
-              slug: true,
-              image: true
-            }
-          }
-        }
-      }
     }
   });
   return result;
@@ -33,9 +20,22 @@ const getAllProviders = async (payload: {location: string}) => {
 const getProviderById = async (providerId: string) => {
   const result = await prisma.providerProfile.findUniqueOrThrow({
     where: {
-      id: providerId
-    }
-  })
+      id: providerId,
+    },
+    include: {
+      meals: {
+        include: {
+          category: {
+            select: {
+              name: true,
+              slug: true,
+              image: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
   return result
 }
