@@ -26,6 +26,24 @@ const getAllMeals = async(req: Request, res: Response, next: NextFunction) => {
 
 
 
+
+const getFeaturedMeals = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await mealsService.getFeaturedMeals();
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Data retrieved successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
 const getMealDetail = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const {id} = req.params
@@ -104,6 +122,7 @@ const deleteMeal = async (req: Request, res: Response, next: NextFunction) => {
 
 export const mealsController = {
   getAllMeals,
+  getFeaturedMeals,
   getMealDetail,
   addMealToMenu,
   updateMeal,

@@ -9,6 +9,9 @@ const router = Router();
 router.get("/", mealsController.getAllMeals)
 
 
+router.get("/featured", mealsController.getFeaturedMeals);
+
+
 router.get("/:id", mealsController.getMealDetail)
 
 

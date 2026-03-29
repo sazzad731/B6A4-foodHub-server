@@ -118,6 +118,39 @@ const getAllMeals = async ({
 
 
 
+const getFeaturedMeals = async () => {
+  const result = await prisma.meal.findMany({
+    where: {
+      isAvailable: true,
+      avgRating: {
+        gte: 4.5,
+      },
+      reviewCount: {
+        gte: 4.5,
+      },
+    },
+    orderBy: [{ avgRating: "desc" }, { reviewCount: "desc" }],
+    take: 6,
+    include: {
+      provider: {
+        select: {
+          restaurantName: true,
+          image: true,
+          address: true,
+        },
+      },
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+  return result;
+}
+
+
+
 const getMealDetail = async (mealId: string) => {
   const result = await prisma.meal.findUniqueOrThrow({
     where: {
@@ -170,6 +203,7 @@ const deleteMeal = async (mealId: string) => {
 
 export const mealsService = {
   getAllMeals,
+  getFeaturedMeals,
   getMealDetail,
   addMealToMenu,
   updateMeal,
