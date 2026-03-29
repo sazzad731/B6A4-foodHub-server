@@ -1,12 +1,19 @@
 import { NextFunction, Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { providerService } from "./provider.service";
+import paginationSortingHelper from "../../helpers/paginationSorting";
+import { number } from "zod";
 
 const getAllProviders = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { location } = req.query;
-    const locationString = typeof location === "string" ? location : ""
-    const result = await providerService.getAllProviders({location: locationString});
+    const locationString = typeof location === "string" ? location : "";
+    const { page, skip, limit, sortBy, sortOrder } = paginationSortingHelper({
+      ...req.query,
+      defSort: "avgRating",
+      defOrder: "desc"
+    });
+    const result = await providerService.getAllProviders({location: locationString, page, skip, limit, sortBy, sortOrder});
     sendResponse(res, {
       statusCode: 200,
       success: true,

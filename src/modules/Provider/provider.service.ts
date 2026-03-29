@@ -1,18 +1,53 @@
 import { prisma } from "../../lib/prisma"
 import { UserRole } from "../../middlewares/auth";
 
-const getAllProviders = async (payload: {location: string}) => {
-  const { location } = payload;
+const getAllProviders = async ({
+  location,
+  page,
+  skip,
+  limit,
+  sortBy,
+  sortOrder,
+}: {
+  location: string;
+  page: number;
+  skip: number;
+  limit: number;
+  sortBy: string;
+  sortOrder: string;
+}) => {
   const result = await prisma.providerProfile.findMany({
+    skip,
+    take: limit,
     where: {
       address: {
         contains: location,
-        mode: "insensitive"
-      }
+        mode: "insensitive",
+      },
+    },
+    orderBy: {
+      [sortBy]: sortOrder
     }
   });
-  return result;
-}
+
+  const total = await prisma.providerProfile.count({
+    where: {
+      address: {
+        contains: location,
+        mode: "insensitive",
+      },
+    },
+  });
+  return {
+    providers: result,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPage: Math.ceil(total / limit),
+    },
+  };
+};
 
 
 
