@@ -155,6 +155,29 @@ const getMealDetail = async (mealId: string) => {
   const result = await prisma.meal.findUniqueOrThrow({
     where: {
       id: mealId
+    },
+    include: {
+      provider: {
+        select: {
+          restaurantName: true,
+          deliveryFee: true,
+          image: true,
+          isOpen: true,
+          address: true
+        }
+      },
+      category: true,
+      reviews: {
+        include: {
+          customer: {
+            select: {
+              name: true,
+              email: true,
+              image: true
+            }
+          }
+        }
+      }
     }
   })
 
