@@ -3,6 +3,7 @@ import { prisma } from "../../lib/prisma"
 
 const getAllMeals = async ({
   search,
+  category,
   minPrice,
   maxPrice,
   page,
@@ -12,6 +13,7 @@ const getAllMeals = async ({
   sortOrder
 }: {
   search: string;
+  category: string;
   minPrice: string;
   maxPrice: string;
   page: number;
@@ -41,14 +43,6 @@ const getAllMeals = async ({
           },
         },
         {
-          category: {
-            name: {
-              contains: search,
-              mode: "insensitive",
-            },
-          },
-        },
-        {
           provider: {
             OR: [
               {
@@ -67,6 +61,11 @@ const getAllMeals = async ({
           },
         },
       ],
+    },
+    {
+      category: {
+        id: category
+      }
     },
     {
       price: {

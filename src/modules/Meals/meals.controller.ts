@@ -10,9 +10,11 @@ const getAllMeals = async(req: Request, res: Response, next: NextFunction) => {
     const { price_range } = req.query;
     const searchString = typeof search === "string" ? search : ""
     const [minPrice, maxPrice] = typeof price_range === "string" ? price_range.split(",").length > 1 ? price_range.split(",") : [price_range, "10000"] : ["0", "10000"];
+    const { category } = req.query;
+    const categoryString = typeof category === "string" ? category : ""
 
     const {page, skip, limit, sortBy, sortOrder} = paginationSortingHelper(req.query);
-    const result = await mealsService.getAllMeals({search: searchString, minPrice, maxPrice, page, skip, limit, sortBy, sortOrder})
+    const result = await mealsService.getAllMeals({search: searchString, category: categoryString, minPrice, maxPrice, page, skip, limit, sortBy, sortOrder})
     sendResponse(res, {
       statusCode: 200,
       success: true,
