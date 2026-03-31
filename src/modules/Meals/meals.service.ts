@@ -22,58 +22,41 @@ const getAllMeals = async ({
   sortBy: string,
   sortOrder: string
 }) => {
-  const andCondition: MealWhereInput[] = [
-    {
+  const andCondition: any[] = [];
+
+  if (search) {
+    andCondition.push({
       OR: [
-        {
-          title: {
-            contains: search,
-            mode: "insensitive",
-          },
-        },
-        {
-          description: {
-            contains: search,
-            mode: "insensitive",
-          },
-        },
-        {
-          tags: {
-            has: search,
-          },
-        },
+        { title: { contains: search, mode: "insensitive" } },
+        { description: { contains: search, mode: "insensitive" } },
+        { tags: { has: search } },
         {
           provider: {
             OR: [
-              {
-                restaurantName: {
-                  contains: search,
-                  mode: "insensitive",
-                },
-              },
-              {
-                address: {
-                  contains: search,
-                  mode: "insensitive",
-                },
-              },
+              { restaurantName: { contains: search, mode: "insensitive" } },
+              { address: { contains: search, mode: "insensitive" } },
             ],
           },
         },
       ],
-    },
-    {
-      category: {
-        id: category
-      }
-    },
-    {
+    });
+  }
+
+  if (category) {
+    andCondition.push({
+      categoryId: category,
+    });
+  }
+
+  if (minPrice || maxPrice) {
+    andCondition.push({
       price: {
-        gte: Number(minPrice),
-        lte: Number(maxPrice),
+        gte: minPrice ? Number(minPrice) : 0,
+        lte: maxPrice ? Number(maxPrice) : 1000000,
       },
-    },
-  ];
+    });
+  }
+
   const result = await prisma.meal.findMany({
     skip,
     take: limit,

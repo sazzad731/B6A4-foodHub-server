@@ -18,7 +18,7 @@ type IOptionsResult = {
 
 const paginationSortingHelper = (options: IOptions): IOptionsResult => {
   const page: number = Number(options.page) || 1;
-  const limit: number = Number(options.limit) || 10;
+  const limit: number = Number(options.limit) || 9;
   const skip = (page - 1) * limit;
 
   const sortBy = options.sortBy || options.defSort || "createdAt";
