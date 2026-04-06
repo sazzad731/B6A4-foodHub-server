@@ -1,8 +1,19 @@
 import { prisma } from "../../lib/prisma"
 
 const getAllCategory = async () => {
-  const result = await prisma.category.findMany();
-  return result;
+  const result = await prisma.category.findMany({
+    include: {
+      _count: {
+        select: {meals: true}
+      }
+    }
+  });
+  const categoriesWithCount = result.map((category) => ({
+    ...category,
+    mealCount: category._count.meals,
+    _count: undefined,
+  }));
+  return categoriesWithCount;
 }
 
 
