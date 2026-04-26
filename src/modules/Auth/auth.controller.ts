@@ -5,9 +5,11 @@ import { AuthService } from "./auth.service";
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.body.role === "ADMIN") {
-      throw new Error(
+      const error = new Error(
         "Registration failed. You have no permission to use admin role",
-      );
+      ) as Error & { statusCode: number };
+      error.statusCode = 403;
+      throw error;
     }
     const result = await AuthService.createUser(req.body);
     sendResponse(res, {
@@ -27,13 +29,14 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, password } = req.body;
-    
+
     const result = await AuthService.loginUser(email, password);
+    const isProduction = process.env.NODE_ENV === "production";
 
     res.cookie("token", result.token, {
-      secure: true,
+      secure: isProduction,
       httpOnly: true,
-      sameSite: "none",
+      sameSite: isProduction ? "none" : "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 

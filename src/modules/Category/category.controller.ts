@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { categoryService } from "./category.service";
 
-const getAllCategory = async(req: Request, res: Response, next: NextFunction) => {
+const getAllCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await categoryService.getAllCategory();
     sendResponse(res, {
@@ -10,20 +10,15 @@ const getAllCategory = async(req: Request, res: Response, next: NextFunction) =>
       success: true,
       message: "Data retrieved successfully",
       data: result,
-    })
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-
-
-
+};
 
 const addCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = req.body;
-    category.slug = category.name.toLowerCase().split(" ").join("-");
     const result = await categoryService.addCategory(category);
     sendResponse(res, {
       statusCode: 201,
@@ -36,10 +31,39 @@ const addCategory = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const updateCategory = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const result = await categoryService.updateCategory(id as string, req.body);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Category updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
-
+const deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const result = await categoryService.deleteCategory(id as string);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Category deleted successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const categoryController = {
   getAllCategory,
-  addCategory
-}
+  addCategory,
+  updateCategory,
+  deleteCategory,
+};

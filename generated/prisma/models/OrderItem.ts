@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model OrderItem
@@ -27,15 +27,15 @@ export type AggregateOrderItem = {
 }
 
 export type OrderItemAvgAggregateOutputType = {
-  unitPrice: number | null
+  priceAtOrder: runtime.Decimal | null
   quantity: number | null
-  subtotal: number | null
+  subtotal: runtime.Decimal | null
 }
 
 export type OrderItemSumAggregateOutputType = {
-  unitPrice: number | null
+  priceAtOrder: runtime.Decimal | null
   quantity: number | null
-  subtotal: number | null
+  subtotal: runtime.Decimal | null
 }
 
 export type OrderItemMinAggregateOutputType = {
@@ -44,9 +44,9 @@ export type OrderItemMinAggregateOutputType = {
   mealId: string | null
   mealName: string | null
   image: string | null
-  unitPrice: number | null
+  priceAtOrder: runtime.Decimal | null
   quantity: number | null
-  subtotal: number | null
+  subtotal: runtime.Decimal | null
 }
 
 export type OrderItemMaxAggregateOutputType = {
@@ -55,9 +55,9 @@ export type OrderItemMaxAggregateOutputType = {
   mealId: string | null
   mealName: string | null
   image: string | null
-  unitPrice: number | null
+  priceAtOrder: runtime.Decimal | null
   quantity: number | null
-  subtotal: number | null
+  subtotal: runtime.Decimal | null
 }
 
 export type OrderItemCountAggregateOutputType = {
@@ -66,7 +66,7 @@ export type OrderItemCountAggregateOutputType = {
   mealId: number
   mealName: number
   image: number
-  unitPrice: number
+  priceAtOrder: number
   quantity: number
   subtotal: number
   _all: number
@@ -74,13 +74,13 @@ export type OrderItemCountAggregateOutputType = {
 
 
 export type OrderItemAvgAggregateInputType = {
-  unitPrice?: true
+  priceAtOrder?: true
   quantity?: true
   subtotal?: true
 }
 
 export type OrderItemSumAggregateInputType = {
-  unitPrice?: true
+  priceAtOrder?: true
   quantity?: true
   subtotal?: true
 }
@@ -91,7 +91,7 @@ export type OrderItemMinAggregateInputType = {
   mealId?: true
   mealName?: true
   image?: true
-  unitPrice?: true
+  priceAtOrder?: true
   quantity?: true
   subtotal?: true
 }
@@ -102,7 +102,7 @@ export type OrderItemMaxAggregateInputType = {
   mealId?: true
   mealName?: true
   image?: true
-  unitPrice?: true
+  priceAtOrder?: true
   quantity?: true
   subtotal?: true
 }
@@ -113,7 +113,7 @@ export type OrderItemCountAggregateInputType = {
   mealId?: true
   mealName?: true
   image?: true
-  unitPrice?: true
+  priceAtOrder?: true
   quantity?: true
   subtotal?: true
   _all?: true
@@ -211,9 +211,9 @@ export type OrderItemGroupByOutputType = {
   mealId: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal
   quantity: number
-  subtotal: number
+  subtotal: runtime.Decimal
   _count: OrderItemCountAggregateOutputType | null
   _avg: OrderItemAvgAggregateOutputType | null
   _sum: OrderItemSumAggregateOutputType | null
@@ -245,9 +245,9 @@ export type OrderItemWhereInput = {
   mealId?: Prisma.StringFilter<"OrderItem"> | string
   mealName?: Prisma.StringFilter<"OrderItem"> | string
   image?: Prisma.StringFilter<"OrderItem"> | string
-  unitPrice?: Prisma.IntFilter<"OrderItem"> | number
+  priceAtOrder?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFilter<"OrderItem"> | number
-  subtotal?: Prisma.IntFilter<"OrderItem"> | number
+  subtotal?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   meal?: Prisma.XOR<Prisma.MealScalarRelationFilter, Prisma.MealWhereInput>
 }
@@ -258,7 +258,7 @@ export type OrderItemOrderByWithRelationInput = {
   mealId?: Prisma.SortOrder
   mealName?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  unitPrice?: Prisma.SortOrder
+  priceAtOrder?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   order?: Prisma.OrderOrderByWithRelationInput
@@ -274,9 +274,9 @@ export type OrderItemWhereUniqueInput = Prisma.AtLeast<{
   mealId?: Prisma.StringFilter<"OrderItem"> | string
   mealName?: Prisma.StringFilter<"OrderItem"> | string
   image?: Prisma.StringFilter<"OrderItem"> | string
-  unitPrice?: Prisma.IntFilter<"OrderItem"> | number
+  priceAtOrder?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFilter<"OrderItem"> | number
-  subtotal?: Prisma.IntFilter<"OrderItem"> | number
+  subtotal?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   meal?: Prisma.XOR<Prisma.MealScalarRelationFilter, Prisma.MealWhereInput>
 }, "id">
@@ -287,7 +287,7 @@ export type OrderItemOrderByWithAggregationInput = {
   mealId?: Prisma.SortOrder
   mealName?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  unitPrice?: Prisma.SortOrder
+  priceAtOrder?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   _count?: Prisma.OrderItemCountOrderByAggregateInput
@@ -306,18 +306,18 @@ export type OrderItemScalarWhereWithAggregatesInput = {
   mealId?: Prisma.StringWithAggregatesFilter<"OrderItem"> | string
   mealName?: Prisma.StringWithAggregatesFilter<"OrderItem"> | string
   image?: Prisma.StringWithAggregatesFilter<"OrderItem"> | string
-  unitPrice?: Prisma.IntWithAggregatesFilter<"OrderItem"> | number
+  priceAtOrder?: Prisma.DecimalWithAggregatesFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntWithAggregatesFilter<"OrderItem"> | number
-  subtotal?: Prisma.IntWithAggregatesFilter<"OrderItem"> | number
+  subtotal?: Prisma.DecimalWithAggregatesFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemCreateInput = {
   id?: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
   meal: Prisma.MealCreateNestedOneWithoutOrderItemsInput
 }
@@ -328,18 +328,18 @@ export type OrderItemUncheckedCreateInput = {
   mealId: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   order?: Prisma.OrderUpdateOneRequiredWithoutItemsNestedInput
   meal?: Prisma.MealUpdateOneRequiredWithoutOrderItemsNestedInput
 }
@@ -350,9 +350,9 @@ export type OrderItemUncheckedUpdateInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemCreateManyInput = {
@@ -361,18 +361,18 @@ export type OrderItemCreateManyInput = {
   mealId: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemUncheckedUpdateManyInput = {
@@ -381,9 +381,9 @@ export type OrderItemUncheckedUpdateManyInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemListRelationFilter = {
@@ -402,13 +402,13 @@ export type OrderItemCountOrderByAggregateInput = {
   mealId?: Prisma.SortOrder
   mealName?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  unitPrice?: Prisma.SortOrder
+  priceAtOrder?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
 
 export type OrderItemAvgOrderByAggregateInput = {
-  unitPrice?: Prisma.SortOrder
+  priceAtOrder?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
@@ -419,7 +419,7 @@ export type OrderItemMaxOrderByAggregateInput = {
   mealId?: Prisma.SortOrder
   mealName?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  unitPrice?: Prisma.SortOrder
+  priceAtOrder?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
@@ -430,13 +430,13 @@ export type OrderItemMinOrderByAggregateInput = {
   mealId?: Prisma.SortOrder
   mealName?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  unitPrice?: Prisma.SortOrder
+  priceAtOrder?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
 
 export type OrderItemSumOrderByAggregateInput = {
-  unitPrice?: Prisma.SortOrder
+  priceAtOrder?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
@@ -529,9 +529,9 @@ export type OrderItemCreateWithoutMealInput = {
   id?: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
 }
 
@@ -540,9 +540,9 @@ export type OrderItemUncheckedCreateWithoutMealInput = {
   orderId: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemCreateOrConnectWithoutMealInput = {
@@ -580,18 +580,18 @@ export type OrderItemScalarWhereInput = {
   mealId?: Prisma.StringFilter<"OrderItem"> | string
   mealName?: Prisma.StringFilter<"OrderItem"> | string
   image?: Prisma.StringFilter<"OrderItem"> | string
-  unitPrice?: Prisma.IntFilter<"OrderItem"> | number
+  priceAtOrder?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFilter<"OrderItem"> | number
-  subtotal?: Prisma.IntFilter<"OrderItem"> | number
+  subtotal?: Prisma.DecimalFilter<"OrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemCreateWithoutOrderInput = {
   id?: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   meal: Prisma.MealCreateNestedOneWithoutOrderItemsInput
 }
 
@@ -600,9 +600,9 @@ export type OrderItemUncheckedCreateWithoutOrderInput = {
   mealId: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemCreateOrConnectWithoutOrderInput = {
@@ -636,18 +636,18 @@ export type OrderItemCreateManyMealInput = {
   orderId: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemUpdateWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   order?: Prisma.OrderUpdateOneRequiredWithoutItemsNestedInput
 }
 
@@ -656,9 +656,9 @@ export type OrderItemUncheckedUpdateWithoutMealInput = {
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemUncheckedUpdateManyWithoutMealInput = {
@@ -666,9 +666,9 @@ export type OrderItemUncheckedUpdateManyWithoutMealInput = {
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemCreateManyOrderInput = {
@@ -676,18 +676,18 @@ export type OrderItemCreateManyOrderInput = {
   mealId: string
   mealName: string
   image: string
-  unitPrice: number
+  priceAtOrder: runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity: number
-  subtotal: number
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   meal?: Prisma.MealUpdateOneRequiredWithoutOrderItemsNestedInput
 }
 
@@ -696,9 +696,9 @@ export type OrderItemUncheckedUpdateWithoutOrderInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
@@ -706,9 +706,9 @@ export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   mealName?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  priceAtOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  subtotal?: Prisma.IntFieldUpdateOperationsInput | number
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 
@@ -719,7 +719,7 @@ export type OrderItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   mealId?: boolean
   mealName?: boolean
   image?: boolean
-  unitPrice?: boolean
+  priceAtOrder?: boolean
   quantity?: boolean
   subtotal?: boolean
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
@@ -732,7 +732,7 @@ export type OrderItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   mealId?: boolean
   mealName?: boolean
   image?: boolean
-  unitPrice?: boolean
+  priceAtOrder?: boolean
   quantity?: boolean
   subtotal?: boolean
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
@@ -745,7 +745,7 @@ export type OrderItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   mealId?: boolean
   mealName?: boolean
   image?: boolean
-  unitPrice?: boolean
+  priceAtOrder?: boolean
   quantity?: boolean
   subtotal?: boolean
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
@@ -758,12 +758,12 @@ export type OrderItemSelectScalar = {
   mealId?: boolean
   mealName?: boolean
   image?: boolean
-  unitPrice?: boolean
+  priceAtOrder?: boolean
   quantity?: boolean
   subtotal?: boolean
 }
 
-export type OrderItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "mealId" | "mealName" | "image" | "unitPrice" | "quantity" | "subtotal", ExtArgs["result"]["orderItem"]>
+export type OrderItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "mealId" | "mealName" | "image" | "priceAtOrder" | "quantity" | "subtotal", ExtArgs["result"]["orderItem"]>
 export type OrderItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   meal?: boolean | Prisma.MealDefaultArgs<ExtArgs>
@@ -789,9 +789,9 @@ export type $OrderItemPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     mealId: string
     mealName: string
     image: string
-    unitPrice: number
+    priceAtOrder: runtime.Decimal
     quantity: number
-    subtotal: number
+    subtotal: runtime.Decimal
   }, ExtArgs["result"]["orderItem"]>
   composites: {}
 }
@@ -1222,9 +1222,9 @@ export interface OrderItemFieldRefs {
   readonly mealId: Prisma.FieldRef<"OrderItem", 'String'>
   readonly mealName: Prisma.FieldRef<"OrderItem", 'String'>
   readonly image: Prisma.FieldRef<"OrderItem", 'String'>
-  readonly unitPrice: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly priceAtOrder: Prisma.FieldRef<"OrderItem", 'Decimal'>
   readonly quantity: Prisma.FieldRef<"OrderItem", 'Int'>
-  readonly subtotal: Prisma.FieldRef<"OrderItem", 'Int'>
+  readonly subtotal: Prisma.FieldRef<"OrderItem", 'Decimal'>
 }
     
 

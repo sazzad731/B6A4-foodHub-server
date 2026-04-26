@@ -1,13 +1,13 @@
 model OrderItem {
-  id      String @id @default(uuid())
-  orderId String
-  mealId  String
+  id          String  @id @default(uuid())
+  orderId     String
+  mealId      String
 
-  mealName  String
-  image     String
-  unitPrice Int
-  quantity  Int
-  subtotal  Int
+  mealName    String
+  image       String
+  priceAtOrder Decimal
+  quantity    Int
+  subtotal    Decimal @default(0)
 
   order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
   meal  Meal  @relation(fields: [mealId], references: [id])

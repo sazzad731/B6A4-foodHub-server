@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { orderService } from "./order.service";
-import { UserRole } from "../../middlewares/auth";
-
 
 const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await orderService.createOrder(req.body)
+    const customerId = req.user?.id;
+    const result = await orderService.createOrder(req.body, customerId as string);
     sendResponse(res, {
       statusCode: 201,
       success: true,
@@ -14,16 +13,15 @@ const createOrder = async (req: Request, res: Response, next: NextFunction) => {
       data: result,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-
+};
 
 const getUserOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user?.id;
-    const result = await orderService.getUserOrder(userId as string);
+    const role = req.user?.role as string;
+    const result = await orderService.getOrders(userId as string, role);
     sendResponse(res, {
       statusCode: 200,
       success: true,
@@ -35,18 +33,12 @@ const getUserOrder = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-
-
-
-const getOrderDetails = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+const getOrderDetails = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const userId = req.user?.id;
-    const result = await orderService.getOrderDetails(id as string, userId as string);
+    const role = req.user?.role as string;
+    const result = await orderService.getOrderDetails(id as string, userId as string, role);
     sendResponse(res, {
       statusCode: 200,
       success: true,
@@ -58,24 +50,12 @@ const getOrderDetails = async (
   }
 };
 
-
-
-
-const updateOrderStatus = async (req: Request,res: Response,next: NextFunction,) => {
+const updateOrderStatus = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    const role = req.user?.role
-    if (!req.body.status) {
-      throw new Error("status not found")
-    }
-
-    if (role === UserRole.CUSTOMER && req.body.status !== "CANCELLED") {
-      throw new Error(
-        `You have no permission to set ${req.body.status} status`,
-      );
-    }
-
-    const result = await orderService.updateOrderStatus(req.body.status, id as string);
+    const userId = req.user?.id;
+    const role = req.user?.role as string;
+    const result = await orderService.updateOrderStatus(req.body.status, id as string, userId as string, role);
     sendResponse(res, {
       statusCode: 200,
       success: true,
@@ -86,10 +66,6 @@ const updateOrderStatus = async (req: Request,res: Response,next: NextFunction,)
     next(error);
   }
 };
-
-
-
-
 
 export const orderController = {
   createOrder,

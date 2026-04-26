@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model Meal
@@ -27,14 +27,14 @@ export type AggregateMeal = {
 }
 
 export type MealAvgAggregateOutputType = {
-  price: number | null
+  price: runtime.Decimal | null
   prepTime: number | null
   avgRating: number | null
   reviewCount: number | null
 }
 
 export type MealSumAggregateOutputType = {
-  price: number | null
+  price: runtime.Decimal | null
   prepTime: number | null
   avgRating: number | null
   reviewCount: number | null
@@ -46,7 +46,7 @@ export type MealMinAggregateOutputType = {
   categoryId: string | null
   title: string | null
   description: string | null
-  price: number | null
+  price: runtime.Decimal | null
   image: string | null
   prepTime: number | null
   isAvailable: boolean | null
@@ -63,7 +63,7 @@ export type MealMaxAggregateOutputType = {
   categoryId: string | null
   title: string | null
   description: string | null
-  price: number | null
+  price: runtime.Decimal | null
   image: string | null
   prepTime: number | null
   isAvailable: boolean | null
@@ -253,7 +253,7 @@ export type MealGroupByOutputType = {
   categoryId: string
   title: string
   description: string
-  price: number
+  price: runtime.Decimal
   image: string
   prepTime: number
   isAvailable: boolean
@@ -294,7 +294,7 @@ export type MealWhereInput = {
   categoryId?: Prisma.StringFilter<"Meal"> | string
   title?: Prisma.StringFilter<"Meal"> | string
   description?: Prisma.StringFilter<"Meal"> | string
-  price?: Prisma.IntFilter<"Meal"> | number
+  price?: Prisma.DecimalFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFilter<"Meal"> | string
   prepTime?: Prisma.IntFilter<"Meal"> | number
   isAvailable?: Prisma.BoolFilter<"Meal"> | boolean
@@ -341,7 +341,7 @@ export type MealWhereUniqueInput = Prisma.AtLeast<{
   categoryId?: Prisma.StringFilter<"Meal"> | string
   title?: Prisma.StringFilter<"Meal"> | string
   description?: Prisma.StringFilter<"Meal"> | string
-  price?: Prisma.IntFilter<"Meal"> | number
+  price?: Prisma.DecimalFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFilter<"Meal"> | string
   prepTime?: Prisma.IntFilter<"Meal"> | number
   isAvailable?: Prisma.BoolFilter<"Meal"> | boolean
@@ -389,7 +389,7 @@ export type MealScalarWhereWithAggregatesInput = {
   categoryId?: Prisma.StringWithAggregatesFilter<"Meal"> | string
   title?: Prisma.StringWithAggregatesFilter<"Meal"> | string
   description?: Prisma.StringWithAggregatesFilter<"Meal"> | string
-  price?: Prisma.IntWithAggregatesFilter<"Meal"> | number
+  price?: Prisma.DecimalWithAggregatesFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringWithAggregatesFilter<"Meal"> | string
   prepTime?: Prisma.IntWithAggregatesFilter<"Meal"> | number
   isAvailable?: Prisma.BoolWithAggregatesFilter<"Meal"> | boolean
@@ -405,7 +405,7 @@ export type MealCreateInput = {
   id?: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -427,7 +427,7 @@ export type MealUncheckedCreateInput = {
   categoryId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -445,7 +445,7 @@ export type MealUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -467,7 +467,7 @@ export type MealUncheckedUpdateInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -487,7 +487,7 @@ export type MealCreateManyInput = {
   categoryId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -503,7 +503,7 @@ export type MealUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -521,7 +521,7 @@ export type MealUncheckedUpdateManyInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -668,6 +668,14 @@ export type MealCreatetagsInput = {
   set: string[]
 }
 
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
@@ -759,7 +767,7 @@ export type MealCreateWithoutCategoryInput = {
   id?: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -779,7 +787,7 @@ export type MealUncheckedCreateWithoutCategoryInput = {
   providerId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -828,7 +836,7 @@ export type MealScalarWhereInput = {
   categoryId?: Prisma.StringFilter<"Meal"> | string
   title?: Prisma.StringFilter<"Meal"> | string
   description?: Prisma.StringFilter<"Meal"> | string
-  price?: Prisma.IntFilter<"Meal"> | number
+  price?: Prisma.DecimalFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFilter<"Meal"> | string
   prepTime?: Prisma.IntFilter<"Meal"> | number
   isAvailable?: Prisma.BoolFilter<"Meal"> | boolean
@@ -844,7 +852,7 @@ export type MealCreateWithoutOrderItemsInput = {
   id?: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -865,7 +873,7 @@ export type MealUncheckedCreateWithoutOrderItemsInput = {
   categoryId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -898,7 +906,7 @@ export type MealUpdateWithoutOrderItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -919,7 +927,7 @@ export type MealUncheckedUpdateWithoutOrderItemsInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -936,7 +944,7 @@ export type MealCreateWithoutProviderInput = {
   id?: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -956,7 +964,7 @@ export type MealUncheckedCreateWithoutProviderInput = {
   categoryId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -1000,7 +1008,7 @@ export type MealCreateWithoutReviewsInput = {
   id?: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -1021,7 +1029,7 @@ export type MealUncheckedCreateWithoutReviewsInput = {
   categoryId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -1054,7 +1062,7 @@ export type MealUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1075,7 +1083,7 @@ export type MealUncheckedUpdateWithoutReviewsInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1093,7 +1101,7 @@ export type MealCreateManyCategoryInput = {
   providerId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -1109,7 +1117,7 @@ export type MealUpdateWithoutCategoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1129,7 +1137,7 @@ export type MealUncheckedUpdateWithoutCategoryInput = {
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1148,7 +1156,7 @@ export type MealUncheckedUpdateManyWithoutCategoryInput = {
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1165,7 +1173,7 @@ export type MealCreateManyProviderInput = {
   categoryId: string
   title: string
   description?: string
-  price: number
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string
   image: string
   prepTime?: number
   isAvailable?: boolean
@@ -1181,7 +1189,7 @@ export type MealUpdateWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1201,7 +1209,7 @@ export type MealUncheckedUpdateWithoutProviderInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1220,7 +1228,7 @@ export type MealUncheckedUpdateManyWithoutProviderInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   prepTime?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1384,7 +1392,7 @@ export type $MealPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     categoryId: string
     title: string
     description: string
-    price: number
+    price: runtime.Decimal
     image: string
     prepTime: number
     isAvailable: boolean
@@ -1826,7 +1834,7 @@ export interface MealFieldRefs {
   readonly categoryId: Prisma.FieldRef<"Meal", 'String'>
   readonly title: Prisma.FieldRef<"Meal", 'String'>
   readonly description: Prisma.FieldRef<"Meal", 'String'>
-  readonly price: Prisma.FieldRef<"Meal", 'Int'>
+  readonly price: Prisma.FieldRef<"Meal", 'Decimal'>
   readonly image: Prisma.FieldRef<"Meal", 'String'>
   readonly prepTime: Prisma.FieldRef<"Meal", 'Int'>
   readonly isAvailable: Prisma.FieldRef<"Meal", 'Boolean'>

@@ -11,9 +11,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Status = exports.Role = exports.OrderStatus = void 0;
 exports.OrderStatus = {
-    PENDING: 'PENDING',
-    CONFIRMED: 'CONFIRMED',
+    PLACED: 'PLACED',
     PREPARING: 'PREPARING',
+    READY: 'READY',
     DELIVERED: 'DELIVERED',
     CANCELLED: 'CANCELLED'
 };

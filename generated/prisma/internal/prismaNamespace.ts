@@ -16,10 +16,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "../models"
-import { type PrismaClient } from "./class"
+import type * as Prisma from "../models.js"
+import { type PrismaClient } from "./class.js"
 
-export type * from '../models'
+export type * from '../models.js'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -1007,10 +1007,11 @@ export const OrderScalarFieldEnum = {
   providerId: 'providerId',
   status: 'status',
   deliveryAddress: 'deliveryAddress',
+  phone: 'phone',
   deliveryNote: 'deliveryNote',
   subtotal: 'subtotal',
   deliveryFee: 'deliveryFee',
-  total: 'total',
+  totalPrice: 'totalPrice',
   paymentMethod: 'paymentMethod',
   isPaid: 'isPaid',
   createdAt: 'createdAt',
@@ -1026,7 +1027,7 @@ export const OrderItemScalarFieldEnum = {
   mealId: 'mealId',
   mealName: 'mealName',
   image: 'image',
-  unitPrice: 'unitPrice',
+  priceAtOrder: 'priceAtOrder',
   quantity: 'quantity',
   subtotal: 'subtotal'
 } as const
@@ -1155,6 +1156,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 

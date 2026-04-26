@@ -1,57 +1,68 @@
-import { NextFunction, Request, Response } from "express"
-import jwt, { JwtPayload, Secret } from "jsonwebtoken"
+import { NextFunction, Request, Response } from "express";
+import jwt, { Secret } from "jsonwebtoken";
 import config from "../config";
 import { prisma } from "../lib/prisma";
 import { TUser } from ".";
 
-
 export enum UserRole {
   CUSTOMER = "CUSTOMER",
   PROVIDER = "PROVIDER",
-  ADMIN = "ADMIN"
+  ADMIN = "ADMIN",
 }
+
+const createHttpError = (message: string, statusCode: number) => {
+  const error = new Error(message) as Error & { statusCode: number };
+  error.statusCode = statusCode;
+  return error;
+};
 
 const auth = (...roles: UserRole[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const token = req.cookies.token
+      const tokenFromCookie = req.cookies?.token as string | undefined;
+      const tokenFromHeader = req.headers.authorization?.startsWith("Bearer ")
+        ? req.headers.authorization.split(" ")[1]
+        : undefined;
+      const token = tokenFromCookie || tokenFromHeader;
 
       if (!token) {
-        throw new Error("Token not found")
+        throw createHttpError("Token not found", 401);
       }
 
       const decoded = jwt.verify(token, config.secret as Secret) as TUser;
 
-
       const userData = await prisma.user.findUnique({
         where: {
-          email: decoded.email
-        }
-      })
-
+          email: decoded.email,
+        },
+      });
 
       if (!userData) {
-        throw new Error("Unauthorized access!")
+        throw createHttpError("Unauthorized access!", 401);
       }
-
 
       if (userData.status !== "ACTIVE") {
-        throw new Error("Unauthorized access!!");
+        throw createHttpError("Unauthorized access!!", 401);
       }
 
-
-      if (!roles.includes(decoded.role as UserRole)) {
-        throw new Error("Unauthorized access!!!");
+      if (roles.length > 0 && !roles.includes(userData.role as UserRole)) {
+        throw createHttpError("Unauthorized access!!!", 401);
       }
 
-      req.user = decoded;
+      req.user = {
+        ...decoded,
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        role: userData.role,
+        status: userData.status,
+      };
 
-      next()
+      next();
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
-}
+  };
+};
 
-
-export default auth
+export default auth;

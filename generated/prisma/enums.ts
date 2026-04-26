@@ -10,9 +10,9 @@
 */
 
 export const OrderStatus = {
-  PENDING: 'PENDING',
-  CONFIRMED: 'CONFIRMED',
+  PLACED: 'PLACED',
   PREPARING: 'PREPARING',
+  READY: 'READY',
   DELIVERED: 'DELIVERED',
   CANCELLED: 'CANCELLED'
 } as const

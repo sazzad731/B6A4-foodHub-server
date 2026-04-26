@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
+import paginationSortingHelper from "../../helpers/paginationSorting";
 import sendResponse from "../../utils/sendResponse";
 import { providerService } from "./provider.service";
-import paginationSortingHelper from "../../helpers/paginationSorting";
-import { number } from "zod";
 
 const getAllProviders = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -11,9 +10,16 @@ const getAllProviders = async (req: Request, res: Response, next: NextFunction) 
     const { page, skip, limit, sortBy, sortOrder } = paginationSortingHelper({
       ...req.query,
       defSort: "avgRating",
-      defOrder: "desc"
+      defOrder: "desc",
     });
-    const result = await providerService.getAllProviders({location: locationString, page, skip, limit, sortBy, sortOrder});
+    const result = await providerService.getAllProviders({
+      location: locationString,
+      page,
+      skip,
+      limit,
+      sortBy,
+      sortOrder,
+    });
     sendResponse(res, {
       statusCode: 200,
       success: true,
@@ -21,19 +27,13 @@ const getAllProviders = async (req: Request, res: Response, next: NextFunction) 
       data: result,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
-
-
-const getProviderById = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+const getProviderById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const {id} = req.params
+    const { id } = req.params;
     const result = await providerService.getProviderById(id as string);
     sendResponse(res, {
       statusCode: 200,
@@ -46,9 +46,6 @@ const getProviderById = async (
   }
 };
 
-
-
-
 const createProvider = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user?.id;
@@ -60,12 +57,9 @@ const createProvider = async (req: Request, res: Response, next: NextFunction) =
       data: result,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-
-
+};
 
 export const providerController = {
   getAllProviders,

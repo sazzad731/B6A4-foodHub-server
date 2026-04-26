@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model ProviderProfile
@@ -27,17 +27,17 @@ export type AggregateProviderProfile = {
 }
 
 export type ProviderProfileAvgAggregateOutputType = {
-  deliveryFee: number | null
+  deliveryFee: runtime.Decimal | null
   avgRating: number | null
   totalOrders: number | null
-  totalRevenue: number | null
+  totalRevenue: runtime.Decimal | null
 }
 
 export type ProviderProfileSumAggregateOutputType = {
-  deliveryFee: number | null
+  deliveryFee: runtime.Decimal | null
   avgRating: number | null
   totalOrders: number | null
-  totalRevenue: number | null
+  totalRevenue: runtime.Decimal | null
 }
 
 export type ProviderProfileMinAggregateOutputType = {
@@ -48,11 +48,11 @@ export type ProviderProfileMinAggregateOutputType = {
   address: string | null
   phone: string | null
   image: string | null
-  deliveryFee: number | null
+  deliveryFee: runtime.Decimal | null
   isOpen: boolean | null
   avgRating: number | null
   totalOrders: number | null
-  totalRevenue: number | null
+  totalRevenue: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,11 +65,11 @@ export type ProviderProfileMaxAggregateOutputType = {
   address: string | null
   phone: string | null
   image: string | null
-  deliveryFee: number | null
+  deliveryFee: runtime.Decimal | null
   isOpen: boolean | null
   avgRating: number | null
   totalOrders: number | null
-  totalRevenue: number | null
+  totalRevenue: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -255,12 +255,12 @@ export type ProviderProfileGroupByOutputType = {
   address: string
   phone: string
   image: string
-  deliveryFee: number
+  deliveryFee: runtime.Decimal
   isOpen: boolean
   cuisineTypes: string[]
   avgRating: number
   totalOrders: number
-  totalRevenue: number
+  totalRevenue: runtime.Decimal
   createdAt: Date
   updatedAt: Date
   _count: ProviderProfileCountAggregateOutputType | null
@@ -296,12 +296,12 @@ export type ProviderProfileWhereInput = {
   address?: Prisma.StringFilter<"ProviderProfile"> | string
   phone?: Prisma.StringFilter<"ProviderProfile"> | string
   image?: Prisma.StringFilter<"ProviderProfile"> | string
-  deliveryFee?: Prisma.IntFilter<"ProviderProfile"> | number
+  deliveryFee?: Prisma.DecimalFilter<"ProviderProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
   cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
   avgRating?: Prisma.FloatFilter<"ProviderProfile"> | number
   totalOrders?: Prisma.IntFilter<"ProviderProfile"> | number
-  totalRevenue?: Prisma.IntFilter<"ProviderProfile"> | number
+  totalRevenue?: Prisma.DecimalFilter<"ProviderProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -341,12 +341,12 @@ export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   address?: Prisma.StringFilter<"ProviderProfile"> | string
   phone?: Prisma.StringFilter<"ProviderProfile"> | string
   image?: Prisma.StringFilter<"ProviderProfile"> | string
-  deliveryFee?: Prisma.IntFilter<"ProviderProfile"> | number
+  deliveryFee?: Prisma.DecimalFilter<"ProviderProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFilter<"ProviderProfile"> | boolean
   cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
   avgRating?: Prisma.FloatFilter<"ProviderProfile"> | number
   totalOrders?: Prisma.IntFilter<"ProviderProfile"> | number
-  totalRevenue?: Prisma.IntFilter<"ProviderProfile"> | number
+  totalRevenue?: Prisma.DecimalFilter<"ProviderProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -388,12 +388,12 @@ export type ProviderProfileScalarWhereWithAggregatesInput = {
   address?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   phone?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   image?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
-  deliveryFee?: Prisma.IntWithAggregatesFilter<"ProviderProfile"> | number
+  deliveryFee?: Prisma.DecimalWithAggregatesFilter<"ProviderProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolWithAggregatesFilter<"ProviderProfile"> | boolean
   cuisineTypes?: Prisma.StringNullableListFilter<"ProviderProfile">
   avgRating?: Prisma.FloatWithAggregatesFilter<"ProviderProfile"> | number
   totalOrders?: Prisma.IntWithAggregatesFilter<"ProviderProfile"> | number
-  totalRevenue?: Prisma.IntWithAggregatesFilter<"ProviderProfile"> | number
+  totalRevenue?: Prisma.DecimalWithAggregatesFilter<"ProviderProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
 }
@@ -405,12 +405,12 @@ export type ProviderProfileCreateInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
@@ -426,12 +426,12 @@ export type ProviderProfileUncheckedCreateInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
@@ -445,12 +445,12 @@ export type ProviderProfileUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
@@ -466,12 +466,12 @@ export type ProviderProfileUncheckedUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
@@ -486,12 +486,12 @@ export type ProviderProfileCreateManyInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -503,12 +503,12 @@ export type ProviderProfileUpdateManyMutationInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -521,12 +521,12 @@ export type ProviderProfileUncheckedUpdateManyInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -683,12 +683,12 @@ export type ProviderProfileCreateWithoutMealsInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
@@ -703,12 +703,12 @@ export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInput
@@ -737,12 +737,12 @@ export type ProviderProfileUpdateWithoutMealsInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
@@ -757,12 +757,12 @@ export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderNestedInput
@@ -775,12 +775,12 @@ export type ProviderProfileCreateWithoutOrdersInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
@@ -795,12 +795,12 @@ export type ProviderProfileUncheckedCreateWithoutOrdersInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
@@ -829,12 +829,12 @@ export type ProviderProfileUpdateWithoutOrdersInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
@@ -849,12 +849,12 @@ export type ProviderProfileUncheckedUpdateWithoutOrdersInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
@@ -867,12 +867,12 @@ export type ProviderProfileCreateWithoutUserInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealCreateNestedManyWithoutProviderInput
@@ -886,12 +886,12 @@ export type ProviderProfileUncheckedCreateWithoutUserInput = {
   address: string
   phone: string
   image: string
-  deliveryFee?: number
+  deliveryFee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: boolean
   cuisineTypes?: Prisma.ProviderProfileCreatecuisineTypesInput | string[]
   avgRating?: number
   totalOrders?: number
-  totalRevenue?: number
+  totalRevenue?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
@@ -921,12 +921,12 @@ export type ProviderProfileUpdateWithoutUserInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
@@ -940,12 +940,12 @@ export type ProviderProfileUncheckedUpdateWithoutUserInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
-  deliveryFee?: Prisma.IntFieldUpdateOperationsInput | number
+  deliveryFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cuisineTypes?: Prisma.ProviderProfileUpdatecuisineTypesInput | string[]
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   totalOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  totalRevenue?: Prisma.IntFieldUpdateOperationsInput | number
+  totalRevenue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
@@ -1099,12 +1099,12 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     address: string
     phone: string
     image: string
-    deliveryFee: number
+    deliveryFee: runtime.Decimal
     isOpen: boolean
     cuisineTypes: string[]
     avgRating: number
     totalOrders: number
-    totalRevenue: number
+    totalRevenue: runtime.Decimal
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["providerProfile"]>
@@ -1540,12 +1540,12 @@ export interface ProviderProfileFieldRefs {
   readonly address: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly phone: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly image: Prisma.FieldRef<"ProviderProfile", 'String'>
-  readonly deliveryFee: Prisma.FieldRef<"ProviderProfile", 'Int'>
+  readonly deliveryFee: Prisma.FieldRef<"ProviderProfile", 'Decimal'>
   readonly isOpen: Prisma.FieldRef<"ProviderProfile", 'Boolean'>
   readonly cuisineTypes: Prisma.FieldRef<"ProviderProfile", 'String[]'>
   readonly avgRating: Prisma.FieldRef<"ProviderProfile", 'Float'>
   readonly totalOrders: Prisma.FieldRef<"ProviderProfile", 'Int'>
-  readonly totalRevenue: Prisma.FieldRef<"ProviderProfile", 'Int'>
+  readonly totalRevenue: Prisma.FieldRef<"ProviderProfile", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
 }

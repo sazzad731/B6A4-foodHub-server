@@ -1,40 +1,45 @@
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma";
 import { UserRole } from "../middlewares/auth";
 
 const seedAdmin = async () => {
   try {
-    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD as string, 10);
+    const { ADMIN_NAME, ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;
 
-  const adminData = {
-    name: process.env.ADMIN_NAME as string,
-    email: process.env.ADMIN_EMAIL as string,
-    password: hashedPassword,
-    role: UserRole.ADMIN
-  };
-
-
-  const isExist = await prisma.user.findUnique({
-    where: {
-      email: adminData.email
+    if (!ADMIN_NAME || !ADMIN_EMAIL || !ADMIN_PASSWORD) {
+      throw new Error("ADMIN_NAME, ADMIN_EMAIL and ADMIN_PASSWORD are required");
     }
-  })
 
-  if (isExist) {
-    console.log("Admin already exist ⚠️");
-    return
-  }
+    const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
 
-  await prisma.user.create({
-    data: adminData
-  })
+    const adminData = {
+      name: ADMIN_NAME,
+      email: ADMIN_EMAIL,
+      password: hashedPassword,
+      role: UserRole.ADMIN,
+    };
 
-  console.log("Admin created successfully ✔️");
+    const isExist = await prisma.user.findUnique({
+      where: {
+        email: adminData.email,
+      },
+    });
+
+    if (isExist) {
+      console.log("Admin already exists");
+      return;
+    }
+
+    await prisma.user.create({
+      data: adminData,
+    });
+
+    console.log("Admin created successfully");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   } finally {
     await prisma.$disconnect();
   }
-}
+};
 
 seedAdmin();

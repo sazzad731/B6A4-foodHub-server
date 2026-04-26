@@ -6,14 +6,14 @@ model ProviderProfile {
   address        String
   phone          String
   image          String
-  deliveryFee    Int     @default(0)
+  deliveryFee    Decimal @default(0)
   isOpen         Boolean @default(true)
 
   cuisineTypes String[]
 
   avgRating    Float @default(0)
   totalOrders  Int   @default(0)
-  totalRevenue Int   @default(0)
+  totalRevenue Decimal @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

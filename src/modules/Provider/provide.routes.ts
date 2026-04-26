@@ -1,18 +1,15 @@
 import { Router } from "express";
-import { providerController } from "./provider.controller";
 import auth, { UserRole } from "../../middlewares/auth";
+import { providerController } from "./provider.controller";
 
-const router = Router()
+const router = Router();
 
+router.get("/", providerController.getAllProviders);
 
-router.get("/get-all", providerController.getAllProviders)
+router.get("/get-all", providerController.getAllProviders);
 
+router.get("/:id", providerController.getProviderById);
 
-router.get("/:id", providerController.getProviderById)
+router.post("/", auth(UserRole.PROVIDER), providerController.createProvider);
 
-
-
-router.post("/",auth(UserRole.PROVIDER), providerController.createProvider)
-
-
-export const providerRoute = router
+export const providerRoute = router;

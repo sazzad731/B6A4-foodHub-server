@@ -11,9 +11,11 @@ model Review {
 
   customer User @relation(fields: [customerId], references: [id])
   meal     Meal @relation(fields: [mealId], references: [id])
+  order    Order? @relation(fields: [orderId], references: [id], onDelete: SetNull)
 
   @@unique([customerId, mealId])
   @@index([mealId])
   @@index([customerId])
+  @@index([orderId])
   @@map("reviews")
 }

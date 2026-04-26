@@ -19,6 +19,10 @@ const routerManager = [
     route: userRoute
   },
   {
+    path: "/admin/users",
+    route: userRoute
+  },
+  {
     path: "/meals",
     route: mealsRoute
   },
@@ -27,12 +31,28 @@ const routerManager = [
     route: categoryRoutes
   },
   {
+    path: "/categories",
+    route: categoryRoutes
+  },
+  {
     path: "/provider",
+    route: providerRoute
+  },
+  {
+    path: "/providers",
     route: providerRoute
   },
   {
     path: "/orders",
     route: orderRoute
+  },
+  {
+    path: "/admin/orders",
+    route: orderRoute
+  },
+  {
+    path: "/admin/categories",
+    route: categoryRoutes
   }
 ]
 

@@ -4,7 +4,7 @@ model Meal {
   categoryId  String
   title       String
   description String  @default("")
-  price       Int
+  price       Decimal @default(0)
   image       String
   prepTime    Int     @default(20)
   isAvailable Boolean @default(true)

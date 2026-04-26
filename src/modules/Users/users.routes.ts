@@ -5,6 +5,8 @@ import auth, { UserRole } from "../../middlewares/auth";
 const router = Router()
 
 
+router.patch("/me", auth(UserRole.ADMIN, UserRole.CUSTOMER, UserRole.PROVIDER), usersController.updateOwnProfile)
+
 router.get("/",auth(UserRole.ADMIN), usersController.getAllUsers)
 
 

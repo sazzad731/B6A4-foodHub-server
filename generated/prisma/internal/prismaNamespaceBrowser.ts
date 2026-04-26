@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models'
-export type * from './prismaNamespace'
+export type * from '../models.js'
+export type * from './prismaNamespace.js'
 
 export const Decimal = runtime.Decimal
 
@@ -116,10 +116,11 @@ export const OrderScalarFieldEnum = {
   providerId: 'providerId',
   status: 'status',
   deliveryAddress: 'deliveryAddress',
+  phone: 'phone',
   deliveryNote: 'deliveryNote',
   subtotal: 'subtotal',
   deliveryFee: 'deliveryFee',
-  total: 'total',
+  totalPrice: 'totalPrice',
   paymentMethod: 'paymentMethod',
   isPaid: 'isPaid',
   createdAt: 'createdAt',
@@ -135,7 +136,7 @@ export const OrderItemScalarFieldEnum = {
   mealId: 'mealId',
   mealName: 'mealName',
   image: 'image',
-  unitPrice: 'unitPrice',
+  priceAtOrder: 'priceAtOrder',
   quantity: 'quantity',
   subtotal: 'subtotal'
 } as const
