@@ -61,8 +61,24 @@ const createProvider = async (req: Request, res: Response, next: NextFunction) =
   }
 };
 
+const getDashboard = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId = req.user?.id;
+    const result = await providerService.getDashboard(userId as string);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Dashboard data retrieved successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const providerController = {
   getAllProviders,
   getProviderById,
   createProvider,
+  getDashboard,
 };

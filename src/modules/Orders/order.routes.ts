@@ -10,6 +10,6 @@ router.get("/:id", auth(UserRole.CUSTOMER, UserRole.ADMIN, UserRole.PROVIDER), o
 
 router.post("/", auth(UserRole.CUSTOMER), orderController.createOrder);
 
-router.patch("/provider/:id", auth(UserRole.PROVIDER, UserRole.CUSTOMER), orderController.updateOrderStatus);
+router.patch("/provider/:id", auth(UserRole.PROVIDER), orderController.updateOrderStatus);
 
 export const orderRoute = router;

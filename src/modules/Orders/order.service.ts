@@ -54,7 +54,7 @@ const orderInclude = {
 const toDecimal = (value: unknown) => new Prisma.Decimal(value as any);
 
 const allowedTransitions: Record<OrderStatus, OrderStatus[]> = {
-  PLACED: [OrderStatus.PREPARING],
+  PLACED: [OrderStatus.PREPARING, OrderStatus.CANCELLED],
   PREPARING: [OrderStatus.READY],
   READY: [OrderStatus.DELIVERED],
   DELIVERED: [],
@@ -311,6 +311,10 @@ const updateOrderStatus = async (status: OrderStatus, orderId: string, userId: s
     throw createHttpError("Invalid order status", 400);
   }
 
+  if (role !== UserRole.PROVIDER) {
+    throw createHttpError("Only providers can update order status", 403);
+  }
+
   const where = await getAccessibleOrderWhere(userId, role, orderId);
 
   const order = await prisma.order.findFirstOrThrow({
@@ -325,18 +329,10 @@ const updateOrderStatus = async (status: OrderStatus, orderId: string, userId: s
     throw createHttpError("Invalid order status transition", 400);
   }
 
-  if (role === UserRole.CUSTOMER) {
-    if (status !== OrderStatus.CANCELLED || order.status !== OrderStatus.PLACED) {
-      throw createHttpError(`You have no permission to set ${status} status`, 403);
-    }
-  } else if (role === UserRole.PROVIDER) {
-    const allowedNextStatuses = allowedTransitions[order.status];
+  const allowedNextStatuses = allowedTransitions[order.status];
 
-    if (!allowedNextStatuses.includes(status)) {
-      throw createHttpError("Invalid order status transition", 400);
-    }
-  } else {
-    throw createHttpError("Unauthorized access!", 401);
+  if (!allowedNextStatuses.includes(status)) {
+    throw createHttpError("Invalid order status transition", 400);
   }
 
   const result = await prisma.order.update({

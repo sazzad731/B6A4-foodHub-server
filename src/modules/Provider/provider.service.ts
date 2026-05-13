@@ -249,8 +249,61 @@ const createProvider = async (payload: any, userId: string) => {
   return result;
 };
 
+const getDashboard = async (userId: string) => {
+  const providerProfile = await prisma.providerProfile.findUnique({
+    where: {
+      userId,
+    },
+    select: {
+      id: true,
+      totalOrders: true,
+      totalRevenue: true,
+    },
+  });
+
+  if (!providerProfile) {
+    throw createHttpError("Provider profile not found", 404);
+  }
+
+  const pendingOrders = await prisma.order.count({
+    where: {
+      items: {
+        some: {
+          meal: {
+            providerId: providerProfile.id,
+          },
+        },
+      },
+      status: {
+        in: ["PLACED", "PREPARING"],
+      },
+    },
+  });
+
+  const completedOrders = await prisma.order.count({
+    where: {
+      items: {
+        some: {
+          meal: {
+            providerId: providerProfile.id,
+          },
+        },
+      },
+      status: "DELIVERED",
+    },
+  });
+
+  return {
+    totalOrders: providerProfile.totalOrders,
+    totalRevenue: providerProfile.totalRevenue,
+    pendingOrders,
+    completedOrders,
+  };
+};
+
 export const providerService = {
   getAllProviders,
   getProviderById,
   createProvider,
+  getDashboard,
 };

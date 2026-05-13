@@ -8,6 +8,8 @@ router.get("/", providerController.getAllProviders);
 
 router.get("/get-all", providerController.getAllProviders);
 
+router.get("/dashboard", auth(UserRole.PROVIDER), providerController.getDashboard);
+
 router.get("/:id", providerController.getProviderById);
 
 router.post("/", auth(UserRole.PROVIDER), providerController.createProvider);
