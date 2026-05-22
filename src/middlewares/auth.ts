@@ -42,11 +42,11 @@ const auth = (...roles: UserRole[]) => {
       }
 
       if (userData.status !== "ACTIVE") {
-        throw createHttpError("Unauthorized access!!", 401);
+        throw createHttpError("Your account is suspended", 403);
       }
 
       if (roles.length > 0 && !roles.includes(userData.role as UserRole)) {
-        throw createHttpError("Unauthorized access!!!", 401);
+        throw createHttpError("Forbidden access", 403);
       }
 
       req.user = {

@@ -265,39 +265,57 @@ const getDashboard = async (userId: string) => {
     throw createHttpError("Provider profile not found", 404);
   }
 
-  const pendingOrders = await prisma.order.count({
-    where: {
-      items: {
-        some: {
-          meal: {
-            providerId: providerProfile.id,
-          },
+  const providerOrderWhere = {
+    items: {
+      some: {
+        meal: {
+          providerId: providerProfile.id,
         },
       },
-      status: {
-        in: ["PLACED", "PREPARING"],
-      },
     },
-  });
+  } as const;
 
-  const completedOrders = await prisma.order.count({
-    where: {
-      items: {
-        some: {
-          meal: {
-            providerId: providerProfile.id,
+  const [totalOrders, totalRevenue, pendingOrders, completedOrders, totalMeals] =
+    await Promise.all([
+      prisma.order.count({
+        where: providerOrderWhere,
+      }),
+      prisma.order.aggregate({
+        where: {
+          ...providerOrderWhere,
+          status: "DELIVERED",
+        },
+        _sum: {
+          totalPrice: true,
+        },
+      }),
+      prisma.order.count({
+        where: {
+          ...providerOrderWhere,
+          status: {
+            in: ["PLACED", "PREPARING", "READY"],
           },
         },
-      },
-      status: "DELIVERED",
-    },
-  });
+      }),
+      prisma.order.count({
+        where: {
+          ...providerOrderWhere,
+          status: "DELIVERED",
+        },
+      }),
+      prisma.meal.count({
+        where: {
+          providerId: providerProfile.id,
+        },
+      }),
+    ]);
 
   return {
-    totalOrders: providerProfile.totalOrders,
-    totalRevenue: providerProfile.totalRevenue,
+    totalOrders,
+    totalRevenue: totalRevenue._sum.totalPrice ?? toDecimal(0),
     pendingOrders,
     completedOrders,
+    totalMeals,
   };
 };
 

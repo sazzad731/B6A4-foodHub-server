@@ -567,22 +567,27 @@ const addMealReview = async (mealId: string, customerId: string, payload: any) =
     throw createHttpError("You can review this meal only after placing an order", 403);
   }
 
-  return prisma.$transaction(async (tx) => {
-    const review = await tx.review.upsert({
-      where: {
-        customerId_mealId: {
-          customerId,
-          mealId,
-        },
-      },
-      create: {
+  const existingReview = await prisma.review.findUnique({
+    where: {
+      customerId_mealId: {
         customerId,
         mealId,
-        orderId: order.id,
-        rating,
-        comment,
       },
-      update: {
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (existingReview) {
+    throw createHttpError("You have already reviewed this meal", 400);
+  }
+
+  return prisma.$transaction(async (tx) => {
+    const review = await tx.review.create({
+      data: {
+        customerId,
+        mealId,
         orderId: order.id,
         rating,
         comment,

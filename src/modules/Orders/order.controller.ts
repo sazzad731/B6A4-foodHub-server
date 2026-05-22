@@ -21,7 +21,7 @@ const getUserOrder = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const userId = req.user?.id;
     const role = req.user?.role as string;
-    const result = await orderService.getOrders(userId as string, role);
+    const result = await orderService.getOrders(userId as string, role, req.query);
     sendResponse(res, {
       statusCode: 200,
       success: true,

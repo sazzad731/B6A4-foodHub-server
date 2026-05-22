@@ -277,8 +277,83 @@ const createOrder = async (payload: any, customerId: string) => {
   return result;
 };
 
-const getOrders = async (userId: string, role: string) => {
-  const where = await getAccessibleOrderWhere(userId, role);
+const buildOrderQueryFilters = (query: any) => {
+  const status = typeof query?.status === "string" ? query.status.trim().toUpperCase() : "";
+  const search = typeof query?.search === "string" ? query.search.trim() : "";
+  const filters: Prisma.OrderWhereInput[] = [];
+
+  if (status) {
+    if (!Object.values(OrderStatus).includes(status as OrderStatus)) {
+      throw createHttpError("Invalid order status", 400);
+    }
+
+    filters.push({
+      status: status as OrderStatus,
+    });
+  }
+
+  if (search) {
+    filters.push({
+      OR: [
+        {
+          id: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          phone: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          deliveryAddress: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          customer: {
+            OR: [
+              {
+                name: {
+                  contains: search,
+                  mode: "insensitive",
+                },
+              },
+              {
+                email: {
+                  contains: search,
+                  mode: "insensitive",
+                },
+              },
+            ],
+          },
+        },
+        {
+          provider: {
+            restaurantName: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        },
+      ],
+    });
+  }
+
+  return filters;
+};
+
+const getOrders = async (userId: string, role: string, query: any = {}) => {
+  const accessibleWhere = await getAccessibleOrderWhere(userId, role);
+  const filters = buildOrderQueryFilters(query);
+  const where = filters.length
+    ? {
+        AND: [accessibleWhere, ...filters],
+      }
+    : accessibleWhere;
 
   const result = await prisma.order.findMany({
     where,

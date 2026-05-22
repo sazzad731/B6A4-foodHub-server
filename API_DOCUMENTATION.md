@@ -359,6 +359,16 @@ Notes:
   - `PROVIDER`: orders for own meals
   - `ADMIN`: all orders
 
+Query params supported:
+
+- `status`
+- `search`
+
+Admin dashboard usage:
+
+- Daily order charts can be built from the `createdAt` field returned by this endpoint.
+- Revenue totals should be calculated from delivered orders using `totalPrice`.
+
 ### Get Order Details
 
 - `GET /orders/:id`
@@ -370,9 +380,7 @@ Notes:
 ### Update Order Status
 
 - `PATCH /orders/provider/:id`
-- Access:
-  - `PROVIDER`
-  - `CUSTOMER`: can only cancel their own placed order
+- Access: `PROVIDER`
 
 Request body:
 
