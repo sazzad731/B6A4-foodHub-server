@@ -141,7 +141,9 @@ All routes are mounted under:
 - `PATCH /api/v1/admin/users/:id`
 - `GET /api/v1/admin/orders`
 - `GET /api/v1/admin/categories`
+---
 **See [API_DOCUMENTATION.md](./API_DOCUMENTATION.md) API documentation for more detail**
+---
 
 
 ## Notes
