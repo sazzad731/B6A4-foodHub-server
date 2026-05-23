@@ -67,9 +67,26 @@ const updateOrderStatus = async (req: Request, res: Response, next: NextFunction
   }
 };
 
+const cancelOrder = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const customerId = req.user?.id;
+    const result = await orderService.cancelOrder(id as string, customerId as string);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Order cancelled successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const orderController = {
   createOrder,
   getUserOrder,
   getOrderDetails,
+  cancelOrder,
   updateOrderStatus,
 };

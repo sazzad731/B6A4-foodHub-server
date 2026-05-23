@@ -405,6 +405,17 @@ Strict transitions:
 - `READY -> DELIVERED`
 - `PLACED -> CANCELLED`
 
+### Cancel Own Order
+
+- `PATCH /orders/:id/cancel`
+- Access: `CUSTOMER`
+
+Notes:
+
+- Customers can cancel only their own orders.
+- Only `PLACED` orders can be cancelled.
+- Cancelled orders are returned with status `CANCELLED`.
+
 ## Authentication Rules
 
 - `token` cookie is supported.

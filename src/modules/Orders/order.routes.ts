@@ -43,6 +43,13 @@ router.get(
 router.post("/", rejectAdminMount, auth(UserRole.CUSTOMER), orderController.createOrder);
 
 router.patch(
+  "/:id/cancel",
+  rejectAdminMount,
+  auth(UserRole.CUSTOMER),
+  orderController.cancelOrder,
+);
+
+router.patch(
   "/provider/:id",
   rejectAdminMount,
   auth(UserRole.PROVIDER),

@@ -377,6 +377,64 @@ const getOrderDetails = async (orderId: string, userId: string, role: string) =>
   return result;
 };
 
+const cancelOrder = async (orderId: string, customerId: string) => {
+  const order = await prisma.order.findFirstOrThrow({
+    where: {
+      id: orderId,
+      customerId,
+    },
+    select: {
+      id: true,
+      providerId: true,
+      status: true,
+      totalPrice: true,
+    },
+  });
+
+  if (order.status !== OrderStatus.PLACED) {
+    throw createHttpError("Only placed orders can be cancelled", 400);
+  }
+
+  const result = await prisma.$transaction(async (tx) => {
+    const updateResult = await tx.order.updateMany({
+      where: {
+        id: order.id,
+        status: OrderStatus.PLACED,
+      },
+      data: {
+        status: OrderStatus.CANCELLED,
+      },
+    });
+
+    if (updateResult.count !== 1) {
+      throw createHttpError("Only placed orders can be cancelled", 400);
+    }
+
+    await tx.providerProfile.update({
+      where: {
+        id: order.providerId,
+      },
+      data: {
+        totalOrders: {
+          decrement: 1,
+        },
+        totalRevenue: {
+          decrement: order.totalPrice,
+        },
+      },
+    });
+
+    return tx.order.findUniqueOrThrow({
+      where: {
+        id: order.id,
+      },
+      include: orderInclude,
+    });
+  });
+
+  return result;
+};
+
 const updateOrderStatus = async (status: OrderStatus, orderId: string, userId: string, role: string) => {
   if (!status) {
     throw createHttpError("status not found", 400);
@@ -427,5 +485,6 @@ export const orderService = {
   createOrder,
   getOrders,
   getOrderDetails,
+  cancelOrder,
   updateOrderStatus,
 };
